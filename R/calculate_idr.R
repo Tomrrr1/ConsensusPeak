@@ -25,8 +25,8 @@ calculate_idr <- function(peak_file_1,
   normalised_out_dir <- normalizePath(out_dir, mustWork = TRUE)
 
   # Load the replicate peak files
-  peak1 <- read.table(peak_file_1, header = FALSE)
-  peak2 <- read.table(peak_file_2, header = FALSE)
+  peak1 <- utils::read.table(peak_file_1, header = FALSE)
+  peak2 <- utils::read.table(peak_file_2, header = FALSE)
 
   peak1_df <- peak1[, c(1, 2, 3, 9)]
   peak2_df <- peak2[, c(1, 2, 3, 9)]
@@ -52,7 +52,7 @@ calculate_idr <- function(peak_file_1,
   output_file_path <-
     file.path(normalised_out_dir, output_file_name)
 
-  write.table(
+  utils::write.table(
     top_peaks,
     file = output_file_path,
     quote = FALSE,

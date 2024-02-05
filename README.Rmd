@@ -1,0 +1,10 @@
+---
+title: ""
+author: "`r rworkflows::use_badges()`"
+output: github_document
+date: "2024-02-04"
+---
+
+
+## R Markdown
+Pakcage for calling consensus peaks from multiple biological replicates.
