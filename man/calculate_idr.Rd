@@ -22,6 +22,6 @@ to the .narrowPeak file containing the peaks that passed this threshold.
 }
 \description{
 `calculated_idr()` performs IDR thresholding on a pair of peak sets.
-High-confidence peaks that pass the threshold are written to a .narrowPeak
-file
+High-confidence peaks that pass the threshold are written to a ".narrowPeak"
+file in the specified `out_dir`
 }

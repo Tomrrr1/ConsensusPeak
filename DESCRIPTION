@@ -16,15 +16,15 @@ License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 Depends: 
-    R (>= 4.2.0)
+  R (>= 4.2.0)
 Imports:
-    idr2d,
-    MACSr,
-    Rsamtools
+  idr2d,
+  MACSr,
+  Rsamtools
 Suggests: 
-    rworkflows,
-    testthat (>= 3.0.0),
-    withr
+  rworkflows,
+  testthat (>= 3.0.0),
+  withr
 Config/testthat/edition: 3
 RoxygenNote: 7.3.1
 BugReports: https://github.com/Tomrrr1/ConsensusPeak/issues
