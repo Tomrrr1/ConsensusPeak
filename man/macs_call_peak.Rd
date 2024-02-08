@@ -7,16 +7,20 @@
 macs_call_peak(..., out_name, out_dir = ".")
 }
 \arguments{
-\item{...}{Arguments to be passed to MACSr::callpeak()}
+\item{...}{Arguments to be passed to \link[MACSr]{callpeak()}}
 
 \item{out_name}{Prefix for the output file names}
 
 \item{out_dir}{Path to the output directory where all files will be written}
 }
+\value{
+Full paths to the created \code{narrowPeak} or \link{broadPeak}
+file
+}
 \description{
-This function is a wrapper of the MACSr::callpeak() function, which is itself
-a wrapper of the Python package MACS3.
+This function is a wrapper of the \link[MACSr]{callpeak()} function from the
+\code{MACSr} package.
 }
 \seealso{
-[MACSr::callpeak()] which this function wraps
+\link[MACSr]{callpeak()} which this function wraps
 }

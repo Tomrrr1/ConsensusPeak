@@ -1,6 +1,7 @@
 test_that("Pseudoreplicate BAM files are created and they are not identical", {
-  # Create a temporary directory for the output
+  # testthat automatically deletes local_tempdir()
   temp_output_dir <- withr::local_tempdir()
+  #withr::defer(unlink(temp_output_dir, recursive = TRUE))
 
   # Use normalized path for the pooled BAM
   pooled_bam <- testthat::test_path("testdata", "merged_treatment.bam")
@@ -22,8 +23,4 @@ test_that("Pseudoreplicate BAM files are created and they are not identical", {
   md5_2 <- tools::md5sum(result$pseudoreplicate2)
   expect_false(identical(md5_1, md5_2))
 
-  # Cleanup: Remove BAM files and their corresponding BAI files
-  bam_files <- c(result$pseudoreplicate1, result$pseudoreplicate2)
-  bai_files <- paste0(bam_files, ".bai")
-  #unlink(c(bam_files, bai_files))
 })

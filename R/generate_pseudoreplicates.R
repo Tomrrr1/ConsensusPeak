@@ -7,13 +7,14 @@
 #' @param paired_end Logical, indicating if the BAM file is paired-end.
 #' @param is_control Logical, indicating if the BAM file is a control.
 #' @return A list containing paths to the pseudoreplicate BAM files.
-
 generate_pseudoreplicates <- function(pooled_bam,
                                       output_dir,
                                       paired_end = TRUE,
                                       is_control = FALSE) {
-  # Create temp path for initial SAM file
   temp_sam_path <- withr::local_tempfile(fileext = ".sam")
+  # delete temp file on exit
+  withr::defer(unlink(temp_sam_path))
+
   Rsamtools::asSam(
     pooled_bam,
     destination = sub("\\.sam$",
@@ -30,9 +31,17 @@ generate_pseudoreplicates <- function(pooled_bam,
 
   if (paired_end) {
     # Create temp paths for shuffled and sorted BAM files
-    temp_shuffled_sam <- tempfile(fileext = ".sam")
-    temp_shuffled_bam <- tempfile(fileext = ".bam")
-    sorted_shuffled_bam <- tempfile(fileext = ".bam")
+    temp_shuffled_sam <- withr::local_tempfile(fileext = ".sam")
+    temp_shuffled_bam <- withr::local_tempfile(fileext = ".bam")
+    sorted_shuffled_bam <- withr::local_tempfile(fileext = ".bam")
+
+    print(c(temp_shuffled_bam, temp_shuffled_sam, sorted_shuffled_bam))
+
+    withr::defer(unlink(c(
+      temp_shuffled_sam,
+      temp_shuffled_bam,
+      sorted_shuffled_bam
+    )))
 
     # Write shuffled reads to a temporary SAM file
     writeLines(c(header, shuf_reads), temp_shuffled_sam)
@@ -71,15 +80,9 @@ generate_pseudoreplicates <- function(pooled_bam,
     sorted_sam <- readLines(temp_shuffled_sam)
     shuf_reads <- sorted_sam[!grepl("^@", sorted_sam)]
 
-    # Cleanup temporary files
-    unlink(c(
-      temp_shuffled_sam,
-      temp_shuffled_bam,
-      sorted_shuffled_bam
-    ))
   }
 
-  # Split reads and create pseudoreplicates
+  # Find the midpoint at which to split the merged file
   mid_point <- length(shuf_reads) %/% 2
 
   file_base <-
@@ -92,26 +95,29 @@ generate_pseudoreplicates <- function(pooled_bam,
   final_bam1 <- file.path(output_dir, paste0(file_base, "_1.bam"))
   final_bam2 <- file.path(output_dir, paste0(file_base, "_2.bam"))
 
-  writeLines(c(header, shuf_reads[1:mid_point]), temp_sam_path)
+  writeLines(c(header,
+               shuf_reads[1:mid_point]),
+             temp_sam_path)
 
-  Rsamtools::asBam(temp_sam_path,
-                   destination = sub("\\.bam$",
-                                     "",
-                                     final_bam1),
-                   overwrite = TRUE)
+  Rsamtools::asBam(
+    temp_sam_path,
+    destination = sub("\\.bam$",
+                      "",
+                      final_bam1),
+    overwrite = TRUE
+  )
 
   writeLines(c(header,
                shuf_reads[(mid_point + 1):length(shuf_reads)]),
              temp_sam_path)
 
-  Rsamtools::asBam(temp_sam_path,
-                   destination = sub("\\.bam$",
-                                     "",
-                                     final_bam2),
-                   overwrite = TRUE)
-
-  # Cleanup
-  unlink(temp_sam_path)
+  Rsamtools::asBam(
+    temp_sam_path,
+    destination = sub("\\.bam$",
+                      "",
+                      final_bam2),
+    overwrite = TRUE
+  )
 
   # Return file paths of the new BAM files
   return(list(pseudoreplicate1 = final_bam1, pseudoreplicate2 = final_bam2))

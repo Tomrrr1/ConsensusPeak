@@ -32,12 +32,12 @@ prepare_named_list <- function(rep_treat_1,
   # Check validity and normalise each file path
   file_list <- lapply(file_list, function(x) {
     if (!is.character(x) || length(x) != 1) {
-      stop("Each file path must be a single character string.")
+      stopper("Each file path must be a single character string.")
 
     }
-
-    if (!file.exists(x)) {
-      stop("File does not exist: ", x)
+    # if dir.exists(x) is true then x is pointing to a file, not a directory.
+    if (!file.exists(x) || dir.exists(x)) {
+      stopper("File does not exist: ", x)
 
     }
 

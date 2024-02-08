@@ -1,6 +1,6 @@
 #' Perform IDR thresholding
 #'
-#' `calculated_idr()` performs IDR thresholding on a pair of peak sets.
+#' `calculate_idr()` performs IDR thresholding on a pair of peak sets.
 #' High-confidence peaks that pass the threshold are written to a ".narrowPeak"
 #' file in the specified `out_dir`
 #'
@@ -20,16 +20,16 @@
 calculate_idr <- function(peak_file_1,
                           peak_file_2,
                           stringent = TRUE,
-                          out_dir
-                          ) {
+                          out_dir) {
   normalised_out_dir <- normalizePath(out_dir, mustWork = TRUE)
 
   # Load the replicate peak files
   peak1 <- utils::read.table(peak_file_1, header = FALSE)
   peak2 <- utils::read.table(peak_file_2, header = FALSE)
 
-  peak1_df <- peak1[, c(1, 2, 3, 9)]
-  peak2_df <- peak2[, c(1, 2, 3, 9)]
+  # Col 8 of the narrowPeak file contains -log10(p-value)
+  peak1_df <- peak1[, c(1, 2, 3, 8)]
+  peak2_df <- peak2[, c(1, 2, 3, 8)]
 
   idr_results <- estimate_idr1d(peak1_df, peak2_df,
                                 value_transformation = "identity")
@@ -43,8 +43,8 @@ calculate_idr <- function(peak_file_1,
   }
 
   # Extract the top n peaks and write to .narrowPeak
-  peak1_ordered <- peak1[order(peak1[, 9], decreasing = TRUE),]
-  top_peaks <- peak1_ordered[1:n_thresholded_peaks,]
+  peak1_ordered <- peak1[order(peak1[, 9], decreasing = TRUE), ]
+  top_peaks <- peak1_ordered[1:n_thresholded_peaks, ]
 
   output_file_name <- ifelse(stringent,
                              "IDR_peaks_01.narrowPeak",
@@ -63,7 +63,7 @@ calculate_idr <- function(peak_file_1,
 
   return(list(
     "IDR results" = summary(idr_results),
-    "Path to output file" =  output_file_path)
-  )
+    "Path to output file" =  output_file_path
+  ))
 }
 
