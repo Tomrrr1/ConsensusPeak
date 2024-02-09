@@ -4,18 +4,36 @@
 \alias{multiple_replicates_mspc}
 \title{Run Multiple Sample Peak Calling (MSPC)}
 \usage{
-multiple_replicates_mspc(peak_files, ...)
+multiple_replicates_mspc(
+  treat_files,
+  control_files = NULL,
+  out_dir,
+  subdir_name = "mspc_analysis",
+  ...
+)
 }
 \arguments{
-\item{peak_files}{A vector of peak files to be passed to \code{mspc()}}
+\item{treat_files}{Character vector containing paths to the treatment BAM
+files.}
 
-\item{...}{Additional parameters to be passed to \code{mspc()}
+\item{control_files}{Character vector containing paths to the control BAM
+files.}
 
+\item{out_dir}{Character specifying the name of the output directory in which
+a subdirectory containing the output files will be created.}
+
+\item{subdir_name}{Character specifying the name of the subdirectory that the
+output files will be written to.}
+
+\item{...}{Additional parameters to be passed to \code{macs_call_peak} and
+\code{mspc()}
 
 This function requires dotnet 6.0.0 or higher as a system dependency
-Advise the user to open a conda env and install dotnet here.}
+Advise the user to open a conda env and install .NET here.}
 }
 \description{
 This function is a wrapper of the \link{rmspc}{mspc()} function. The function
-handles an arbitrary number of replicates. Best suited for n > 2.
+handles an arbitrary number of replicates, but is not recommended for the
+simple case of n = 2, where we instead suggest using either
+conservative_idr() or optimal_idr().
 }

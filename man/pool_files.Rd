@@ -19,6 +19,9 @@ The list includes:
 
 \item{out_dir}{The directory where the merged BAM files will be saved.}
 }
+\value{
+Vector containing file paths to the output BAM files
+}
 \description{
 This function pools biological replicates into a single BAM file. It is
 designed to work with the output from the `prepare_named_list` function,

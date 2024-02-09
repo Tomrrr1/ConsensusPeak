@@ -5,30 +5,32 @@
 \title{Conservative IDR analysis}
 \usage{
 conservative_idr(
-  rep_treat_1,
-  rep_treat_2,
-  rep_ctrl_1 = NULL,
-  rep_ctrl_2 = NULL,
+  treat_files,
+  control_files = NULL,
   out_dir,
-  subdir_name = "conservative_analysis",
+  subdir_name = "conservative_idr_analysis",
   ...
 )
 }
 \arguments{
-\item{rep_treat_1}{The path to the BAM file for biological replicate 1}
+\item{treat_files}{Character vector containing paths to the treatment BAM
+files.}
 
-\item{rep_treat_2}{The path to the BAM file for biological replicate 2}
+\item{control_files}{Character vector containing paths to the control BAM
+files.}
 
-\item{out_dir}{A subdirectory containing the results from the analysis will
-be created at the specified location.}
+\item{out_dir}{Character specifying the name of the output directory in which
+a subdirectory containing the output files will be created.}
 
-\item{...}{Additional parameters to be passed to the macs_call_peak
+\item{subdir_name}{Character specifying the name of the subdirectory that the
+output files will be written to.}
+
+\item{...}{Additional parameters to be passed to the \code{macs_call_peak()}
 function.}
-
-\item{paired_end}{Logical, indicating if the BAM file is paired-end.}
 }
 \value{
-list...
+A list containing a summary of the IDR analysis along with the path
+to the output files.
 }
 \description{
 \code{conservative_idr()} performs the conservative IDR analysis as defined

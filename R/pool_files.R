@@ -15,7 +15,7 @@
 #'   \item{"control_file_2"}{Optional. Path to the second control replicate.}
 #' }
 #' @param out_dir The directory where the merged BAM files will be saved.
-#' @return NULL
+#' @return Vector containing file paths to the output BAM files
 
 pool_files <- function(named_list,
                        out_dir) {
@@ -24,21 +24,31 @@ pool_files <- function(named_list,
 
   out_dir <- normalizePath(out_dir)
 
-  Rsamtools::mergeBam(
+  treat <- Rsamtools::mergeBam(
     files = c(rep1, rep2),
     destination = file.path(out_dir, "merged_treatment.bam"),
     overwrite = TRUE
   )
 
+  result <- c(normalizePath(treat))
+
   if (length(named_list) == 4) {
     ctrl1 <- named_list[["control_file_1"]]
     ctrl2 <- named_list[["control_file_2"]]
 
-    Rsamtools::mergeBam(
+    ctrl <- Rsamtools::mergeBam(
       files = c(ctrl1, ctrl2),
       destination = file.path(out_dir, "merged_control.bam"),
       overwrite = TRUE
     )
 
+    result <- c(normalizePath(treat), normalizePath(ctrl))
+
   }
+
+  return(result)
 }
+
+
+
+

@@ -8,11 +8,11 @@
 #' @param is_control Logical, indicating if the BAM file is a control.
 #' @return A list containing paths to the pseudoreplicate BAM files.
 generate_pseudoreplicates <- function(pooled_bam,
-                                      output_dir,
+                                      out_dir,
                                       paired_end = TRUE,
                                       is_control = FALSE) {
+  out_dir <- normalizePath(out_dir)
   temp_sam_path <- withr::local_tempfile(fileext = ".sam")
-  # delete temp file on exit
   withr::defer(unlink(temp_sam_path))
 
   Rsamtools::asSam(
@@ -34,8 +34,6 @@ generate_pseudoreplicates <- function(pooled_bam,
     temp_shuffled_sam <- withr::local_tempfile(fileext = ".sam")
     temp_shuffled_bam <- withr::local_tempfile(fileext = ".bam")
     sorted_shuffled_bam <- withr::local_tempfile(fileext = ".bam")
-
-    print(c(temp_shuffled_bam, temp_shuffled_sam, sorted_shuffled_bam))
 
     withr::defer(unlink(c(
       temp_shuffled_sam,
@@ -92,8 +90,8 @@ generate_pseudoreplicates <- function(pooled_bam,
       "pseudoreplicate"
     }
 
-  final_bam1 <- file.path(output_dir, paste0(file_base, "_1.bam"))
-  final_bam2 <- file.path(output_dir, paste0(file_base, "_2.bam"))
+  final_bam1 <- file.path(out_dir, paste0(file_base, "_1.bam"))
+  final_bam2 <- file.path(out_dir, paste0(file_base, "_2.bam"))
 
   writeLines(c(header,
                shuf_reads[1:mid_point]),

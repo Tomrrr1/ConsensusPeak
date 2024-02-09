@@ -4,63 +4,56 @@
 #' by ENCODE. The function writes output files to a subdirectory in the
 #' specified \code{out_dir}.
 #'
-#' @param rep_treat_1 The path to the BAM file for biological replicate 1
-#' @param rep_treat_2 The path to the BAM file for biological replicate 2
-#' @param out_dir A subdirectory containing the results from the analysis will
-#' be created at the specified location.
-#' @param paired_end Logical, indicating if the BAM file is paired-end.
-#' @param ... Additional parameters to be passed to the macs_call_peak
+#' @param treat_files Character vector containing paths to the treatment BAM
+#' files.
+#' @param control_files Character vector containing paths to the control BAM
+#' files.
+#' @param out_dir Character specifying the name of the output directory in which
+#' a subdirectory containing the output files will be created.
+#' @param subdir_name Character specifying the name of the subdirectory that the
+#' output files will be written to.
+#' @param ... Additional parameters to be passed to the \code{macs_call_peak()}
 #' function.
 #'
 #' @seealso \link[ConsensusPeak]{macs_call_peak()}
 #'
-#' @return list...
+#' @return A list containing a summary of the IDR analysis along with the path
+#' to the output files.
 #'
 #' @export
 
-# Import the messager and stopper functions from EpiCompare and use in place
-# message and stop.
-
-conservative_idr <- function(rep_treat_1,
-                             rep_treat_2,
-                             rep_ctrl_1 = NULL,
-                             rep_ctrl_2 = NULL,
+conservative_idr <- function(treat_files,
+                             control_files = NULL,
                              out_dir,
-                             subdir_name = "conservative_analysis",
+                             subdir_name = "conservative_idr_analysis",
                              ...) {
-  # Generate the file list
-  named_list <-
-    ConsensusPeak:::prepare_named_list(rep_treat_1 = rep_treat_1,
-                                       rep_treat_2 = rep_treat_2,
-                                       rep_ctrl_1 = rep_ctrl_1,
-                                       rep_ctrl_2 = rep_ctrl_2)
-
-  # Generate the final output directory
   final_out_dir <- create_or_use_dir(out_dir, subdir_name)
+  peak_list <-
+    prepare_and_call(
+      treat_files = treat_files,
+      control_files = control_files,
+      out_dir = final_out_dir,
+      ...
+      )
 
-  # Call peak for biological replicate 1.
-  # cfile defaults to NULL if it does not exist
-  result_rep_1 <-
-    ConsensusPeak::macs_call_peak(tfile = named_list[["treatment_file_1"]],
-                                  cfile = named_list[["control_file_1"]],
-                                  out_dir = final_out_dir,
-                                  out_name = "rep1",
-                                  ...)
+  result_idr <- calculate_idr(peak_file_1 = peak_list[[1]],
+                              peak_file_2 = peak_list[[2]],
+                              stringent = TRUE,
+                              out_dir = final_out_dir)
 
-  # Call peak for biological replicate 2
-  result_rep_2 <-
-    ConsensusPeak::macs_call_peak(tfile = named_list[["treatment_file_2"]],
-                                  cfile = named_list[["control_file_2"]],
-                                  out_dir = final_out_dir,
-                                  out_name = "rep2",
-                                  ...)
-
-
-  result_idr <- ConsensusPeak::calculate_idr(peak_file_1 = result_rep_1,
-                                             peak_file_2 = result_rep_2,
-                                             stringent = TRUE,
-                                             out_dir = final_out_dir)
-
-  return(result_idr)
-
+  msg <- paste0("All output files are stored at ", final_out_dir)
+  return(
+    list(
+      "Results" = result_idr,
+      "Output path" = msg
+    )
+  )
 }
+
+
+
+
+
+
+
+

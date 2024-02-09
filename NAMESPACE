@@ -3,6 +3,7 @@
 export(calculate_idr)
 export(conservative_idr)
 export(macs_call_peak)
+export(optimal_idr)
 import(Rsamtools)
 importFrom(MACSr,callpeak)
 importFrom(idr2d,estimate_idr1d)

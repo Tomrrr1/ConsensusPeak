@@ -2,9 +2,9 @@ test_that("High-confidence peak file is generated", {
   temp_out_dir <- withr::local_tempdir()
 
   peak_file_1 <- testthat::test_path("testdata",
-                                    "r1_test_peaks.narrowPeak")
+                                    "r1_test_creb_peaks.narrowPeak")
   peak_file_2 <- testthat::test_path("testdata",
-                                    "r2_test_peaks.narrowPeak")
+                                    "r2_test_creb_peaks.narrowPeak")
 
   result <- calculate_idr(peak_file_1 = peak_file_1,
                           peak_file_2 = peak_file_2,

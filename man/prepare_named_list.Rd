@@ -4,12 +4,7 @@
 \alias{prepare_named_list}
 \title{Prepare a Named List of File Paths for Replicates and Controls}
 \usage{
-prepare_named_list(
-  rep_treat_1,
-  rep_treat_2 = NULL,
-  rep_ctrl_1 = NULL,
-  rep_ctrl_2 = NULL
-)
+prepare_named_list(treat_files, control_files = NULL)
 }
 \arguments{
 \item{rep_treat_1}{File path to the first treatment replicate.}

@@ -5,7 +5,7 @@ test_that("File paths are combined and normalized", {
   file.create(path1)
   file.create(path2)
 
-  result <- prepare_named_list(path1, path2)
+  result <- prepare_named_list(c(path1, path2))
   expect_named(result, c("treatment_file_1", "treatment_file_2"))
   expect_true(all(sapply(result, function(x) file.exists(x))))
 
@@ -29,10 +29,9 @@ test_that("NULL entries are removed", {
 # Test for input validation
 test_that("Function stops with non-character or multiple inputs", {
   expect_error(prepare_named_list(123))
-  expect_error(prepare_named_list(c("path1", "path2")))
 })
 
-# Test for file existence check
+# File existence check
 test_that("Function stops if file does not exist", {
   expect_error(prepare_named_list("this_is_not_a_real_file.txt"))
 })

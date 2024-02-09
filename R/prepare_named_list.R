@@ -14,17 +14,30 @@
 #' to the provided file paths. The list is filtered to exclude any that are
 #' NULL.
 
-prepare_named_list <- function(rep_treat_1,
-                               rep_treat_2 = NULL,
-                               rep_ctrl_1 = NULL,
-                               rep_ctrl_2 = NULL) {
-  # Combine all file paths into a list
-  file_list <- list(
-    "treatment_file_1" = rep_treat_1,
-    "treatment_file_2" = rep_treat_2,
-    "control_file_1" = rep_ctrl_1,
-    "control_file_2" = rep_ctrl_2
-  )
+prepare_named_list <- function(treat_files,
+                               control_files = NULL) {
+  if(!is.null(control_files) && length(treat_files) != length(control_files)){
+    stopper(
+      "Either a control is not used or all treatment files must have an
+      associated control"
+      )
+  }
+
+  file_list <- list()
+
+  # Process treatment files
+  for (i in seq_along(treat_files)) {
+    name <- paste("treatment_file", i, sep = "_")
+    file_list[[name]] <- treat_files[i]
+  }
+
+  # Process control files
+  if (!is.null(control_files)) {
+    for (i in seq_along(control_files)) {
+      name <- paste("control_file", i, sep = "_")
+      file_list[[name]] <- control_files[i]
+    }
+  }
 
   # Remove NULL entries in list
   file_list <- Filter(Negate(is.null), file_list)
