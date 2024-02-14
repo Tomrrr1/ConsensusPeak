@@ -2,13 +2,21 @@
 % Please edit documentation in R/multiple_replicates_mspc.R
 \name{multiple_replicates_mspc}
 \alias{multiple_replicates_mspc}
-\title{Run Multiple Sample Peak Calling (MSPC)}
+\title{Multiple Sample Peak Calling (MSPC)}
 \usage{
 multiple_replicates_mspc(
   treat_files,
   control_files = NULL,
+  is_paired,
   out_dir,
   subdir_name = "mspc_analysis",
+  replicateType,
+  stringencyThreshold,
+  weakThreshold,
+  gamma = stringencyThreshold,
+  c,
+  alpha = 0.05,
+  keep = TRUE,
   ...
 )
 }
@@ -19,21 +27,126 @@ files.}
 \item{control_files}{Character vector containing paths to the control BAM
 files.}
 
+\item{is_paired}{Logical, specifying whether or not the BAM file is
+paired-end.}
+
 \item{out_dir}{Character specifying the name of the output directory in which
 a subdirectory containing the output files will be created.}
 
 \item{subdir_name}{Character specifying the name of the subdirectory that the
 output files will be written to.}
 
-\item{...}{Additional parameters to be passed to \code{macs_call_peak} and
-\code{mspc()}
+\item{replicateType}{Character string. This argument defines
+the replicate type. Possible values of the argument :
+'Bio','Biological', 'Tec', 'Technical'.
+This arguments is required . More information in Details.}
 
-This function requires dotnet 6.0.0 or higher as a system dependency
-Advise the user to open a conda env and install .NET here.}
+\item{stringencyThreshold}{Double. A threshold on p-values,
+where peaks with p-value lower than this threshold, are
+considered stringent.This arguments is required}
+
+\item{weakThreshold}{Double. A threshold on p-values,
+such that peaks with p-value between this and stringency
+threshold, are considered weak peaks. This arguments is required}
+
+\item{gamma}{Double. The combined stringency threshold.
+Peaks with combined p-value below this threshold are confirmed.
+Default value is the value of the argument stringencyThreshold.
+This arguments is optional.}
+
+\item{c}{Integer or character string. the minimum number of overlapping peaks
+required before the MSPC program combines their p-value.
+The value of c can be given in absolute (e.g., c = 2 will require
+at least 2 samples) or percentage of input samples (e.g., c = 50%
+will require at least 50% of input samples) formats.
+Default value is 1. This arguments is optional.
+More information in Details.}
+
+\item{alpha}{Double. The threshold for Benjamini-Hochberg
+multiple testing correction.
+Default value is 0.05. This arguments is optional.}
+
+\item{keep}{Logical. This argument determines whether the mspc function
+should keep or delete all the files generated while running
+the MSPC program.This is an optional argument.
+More information in Details.}
+
+\item{...}{
+  Arguments passed on to \code{\link[MACSr:callpeak]{MACSr::callpeak}}
+  \describe{
+    \item{\code{gsize}}{Effective genome size. It can be 1.0e+9 or 1000000000,
+or shortcuts:'hs' for human (2.7e9), 'mm' for mouse (1.87e9),
+'ce' for C. elegans (9e7) and 'dm' for fruitfly (1.2e8),
+Default:hs.}
+    \item{\code{tsize}}{Tag size/read length. This will override the auto
+detected tag size. DEFAULT: Not set}
+    \item{\code{keepduplicates}}{It controls the behavior towards duplicate
+tags at the exact same location -- the same coordination and
+the same strand.}
+    \item{\code{store_bdg}}{Whether or not to save extended fragment pileup,
+and local lambda tracks (two files) at every bp into a bedGraph
+file.}
+    \item{\code{do_SPMR}}{If True, MACS will SAVE signal per million reads for
+fragment pileup profiles.}
+    \item{\code{trackline}}{Tells MACS to include trackline with bedGraph
+files.}
+    \item{\code{nomodel}}{Whether or not to build the shifting model.}
+    \item{\code{shift}}{The arbitrary shift in bp. Use discretion while
+setting it other than default value.}
+    \item{\code{extsize}}{The arbitrary extension size in bp.}
+    \item{\code{bw}}{Band width for picking regions to compute fragment size.}
+    \item{\code{d_min}}{Minimum fragment size in basepair. Any predicted
+fragment size less than this will be excluded.}
+    \item{\code{mfold}}{Select the regions within MFOLD range of
+high-confidence enrichment ratio against background to build
+model.}
+    \item{\code{onauto}}{Whether turn on the auto pair model process.}
+    \item{\code{qvalue}}{Minimum FDR (q-value) cutoff for peak detection.}
+    \item{\code{pvalue}}{Pvalue cutoff for peak detection. DEFAULT: not set.}
+    \item{\code{tempdir}}{Optional directory to store temp files.}
+    \item{\code{nolambda}}{If True, MACS will use fixed background lambda as
+local lambda for every peak region.}
+    \item{\code{scaleto}}{When set to 'small', scale the larger sample up to
+the smaller sample.}
+    \item{\code{downsample}}{When set, random sampling method will scale down
+the bigger sample. By default, MACS uses linear scaling.}
+    \item{\code{slocal}}{The small nearby region in basepairs to calculate
+dynamic lambda.}
+    \item{\code{llocal}}{The large nearby region in basepairs to calculate
+dynamic lambda.}
+    \item{\code{broad}}{If set, MACS will try to call broad peaks using the
+--broad-cutoff setting.}
+    \item{\code{broadcutoff}}{Cutoff for broad region. This option is not
+available unless --broad is set.}
+    \item{\code{maxgap}}{Maximum gap between significant sites to cluster them
+together. The DEFAULT value is the detected read length/tag
+size.}
+    \item{\code{minlen}}{Minimum length of a peak. The DEFAULT value is the predicted
+fragment size d.}
+    \item{\code{cutoff_analysis}}{While set, MACS2 will analyze number or
+total length of peaks that can be called by different p-value
+cutoff then output a summary table to help user decide a better
+cutoff.}
+    \item{\code{fecutoff}}{When set, the value will be used to filter out
+peaks with low fold-enrichment.}
+    \item{\code{call_summits}}{If set, MACS will use a more sophisticated
+signal processing approach to find subpeak summits in each
+enriched peak region.}
+    \item{\code{buffer_size}}{Buffer size for incrementally increasing
+internal array size to store reads alignment
+information. DEFAULT: 100000.}
+    \item{\code{verbose}}{Set verbose level of runtime message. 0: only show
+critical message, 1: show additional warning message, 2: show
+process information, 3: show debug messages. DEFAULT:2}
+  }}
+}
+\value{
+A list containing a summary of the MSPC along with the path to the
+output files.
 }
 \description{
-This function is a wrapper of the \link{rmspc}{mspc()} function. The function
-handles an arbitrary number of replicates, but is not recommended for the
-simple case of n = 2, where we instead suggest using either
-conservative_idr() or optimal_idr().
+\code{multiple_replicates_mspc()} is a wrapper of the \link{rmspc}{mspc()}
+function. MSPC handles an arbitrary number of replicates, but is not
+recommended for the simple case of n = 2, where we suggest using
+\code{conservative_idr()} or \code{optimal_idr()}.
 }

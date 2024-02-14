@@ -8,22 +8,25 @@
 #' files.
 #' @param control_files Character vector containing paths to the control BAM
 #' files.
+#' @param is_paired Logical, specifying whether or not the BAM file is
+#' paired-end.
 #' @param out_dir Character specifying the name of the output directory in which
 #' a subdirectory containing the output files will be created.
 #' @param subdir_name Character specifying the name of the subdirectory that the
 #' output files will be written to.
-#' @param ... Additional parameters to be passed to the \code{macs_call_peak()}
-#' function.
+#' @inheritDotParams MACSr::callpeak -tfile -cfile -outdir -name -format -log
+#' -tempdir
 #'
 #' @seealso \link[ConsensusPeak]{macs_call_peak()}
 #'
-#' @return A list containing a summary of the IDR analysis along with the path
+#' @returns A list containing a summary of the IDR analysis along with the path
 #' to the output files.
 #'
 #' @export
 
 conservative_idr <- function(treat_files,
                              control_files = NULL,
+                             is_paired,
                              out_dir,
                              subdir_name = "conservative_idr_analysis",
                              ...) {
@@ -32,6 +35,7 @@ conservative_idr <- function(treat_files,
     prepare_and_call(
       treat_files = treat_files,
       control_files = control_files,
+      is_paired = is_paired,
       out_dir = final_out_dir,
       ...
       )

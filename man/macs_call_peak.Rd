@@ -4,14 +4,14 @@
 \alias{macs_call_peak}
 \title{Call peaks using MACSr}
 \usage{
-macs_call_peak(..., out_name, out_dir = ".")
+macs_call_peak(..., name, out_dir = ".")
 }
 \arguments{
 \item{...}{Arguments to be passed to \link[MACSr]{callpeak()}}
 
-\item{out_name}{Prefix for the output file names}
-
 \item{out_dir}{Path to the output directory where all files will be written}
+
+\item{out_name}{Prefix for the output file names}
 }
 \value{
 Full paths to the created \code{narrowPeak} or \link{broadPeak}

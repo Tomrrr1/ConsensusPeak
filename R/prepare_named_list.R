@@ -8,7 +8,7 @@
 #' @param rep_treat_2 Optional file path to the second treatment replicate.
 #' @param rep_ctrl_1 Optional file path to the first control replicate.
 #' @param rep_ctrl_2 Optional file path to the second control replicate.
-#' @return A named list of normalised file paths for the provided replicates
+#' @returns A named list of normalised file paths for the provided replicates
 #' and controls. The list will contain elements named "treatment_file_1",
 #' "treatment_file_2", "control_file_1", and "control_file_2", corresponding
 #' to the provided file paths. The list is filtered to exclude any that are
@@ -46,16 +46,13 @@ prepare_named_list <- function(treat_files,
   file_list <- lapply(file_list, function(x) {
     if (!is.character(x) || length(x) != 1) {
       stopper("Each file path must be a single character string.")
-
     }
-    # if dir.exists(x) is true then x is pointing to a file, not a directory.
+    # Ensure path to file and not path to directory
     if (!file.exists(x) || dir.exists(x)) {
       stopper("File does not exist: ", x)
-
     }
 
     normalizePath(x)
-
   })
 
   return(file_list)

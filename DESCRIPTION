@@ -18,6 +18,7 @@ LazyData: true
 Depends: 
   R (>= 4.2.0)
 Imports:
+  ChIPpeakAnno,
   idr2d,
   MACSr,
   Rsamtools

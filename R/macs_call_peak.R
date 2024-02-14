@@ -15,17 +15,16 @@
 #'
 #' @export
 
-macs_call_peak <- function(..., out_name, out_dir = ".") {
+macs_call_peak <- function(..., name, out_dir = ".") {
 
-  message("\nCalling peaks with MACSr")
+  messager("\nCalling peaks with MACSr")
 
   # mustWork=TRUE forces an error if out_dir does not exist
   normalised_out_dir <- normalizePath(out_dir, mustWork = TRUE)
 
   result <-
-    MACSr::callpeak(outdir = normalised_out_dir, name = out_name, ...)
+    MACSr::callpeak(outdir = normalised_out_dir, name = name, ...)
 
   # Return path to the narrowPeak file
   return(result$outputs[1])
-
 }

@@ -4,17 +4,24 @@
 \alias{prepare_and_call}
 \title{Prepare files for peak calling and call peaks}
 \usage{
-prepare_and_call(treat_files, control_files = NULL, out_dir, ...)
+prepare_and_call(treat_files, control_files = NULL, is_paired, out_dir, ...)
 }
 \arguments{
-\item{...}{Additional parameters to pass to macs_call_peak
+\item{treat_files}{Character vector containing paths to the treatment BAM
+files.}
 
-Prepare and call will be used in all analyses except optimal_idr. Editing this
-function to accommodate pseudoreplicates adds unnecessary complexity. The optimal
-idr function will use a custom version of this code}
+\item{control_files}{Character vector containing paths to the control BAM
+files.}
+
+\item{is_paired}{Logical, specifying whether or not the BAM file is
+paired-end.}
+
+\item{out_dir}{Character specifying the name of the output directory in which
+a subdirectory containing the output files will be created.}
 }
 \description{
 \code{prepare_and_call} prepares the BAM files into a list and then passes
-this list to the macs_call_peak() function. The ouput is a list containining
+this list to the macs_call_peak() function. The output is a list comprising
 file paths to the resulting peak files.
 }
+\keyword{internal}

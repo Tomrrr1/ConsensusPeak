@@ -6,10 +6,10 @@
 #' @param output_dir The directory to save the output BAM files.
 #' @param paired_end Logical, indicating if the BAM file is paired-end.
 #' @param is_control Logical, indicating if the BAM file is a control.
-#' @return A list containing paths to the pseudoreplicate BAM files.
+#' @returns A list containing paths to the pseudoreplicate BAM files.
 generate_pseudoreplicates <- function(pooled_bam,
                                       out_dir,
-                                      paired_end = TRUE,
+                                      is_paired = TRUE,
                                       is_control = FALSE) {
   out_dir <- normalizePath(out_dir)
   temp_sam_path <- withr::local_tempfile(fileext = ".sam")
@@ -29,7 +29,7 @@ generate_pseudoreplicates <- function(pooled_bam,
   reads <- original_sam[!grepl("^@", original_sam)]
   shuf_reads <- sample(reads, replace = FALSE)
 
-  if (paired_end) {
+  if (is_paired) {
     # Create temp paths for shuffled and sorted BAM files
     temp_shuffled_sam <- withr::local_tempfile(fileext = ".sam")
     temp_shuffled_bam <- withr::local_tempfile(fileext = ".bam")

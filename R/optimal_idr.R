@@ -5,18 +5,15 @@
 #' pseudoreplicates.
 #'
 #' @inheritParams conservative_idr
-#' @param paired_end Logical, indicating if the BAM file is paired-end. This
-#' controls the behaviour of pseudoreplicate generation. Default is
-#' \code{FALSE}.
 #'
 #' @returns Summary of the IDR output
 #'
 #' @export
 optimal_idr <- function(treat_files,
                         control_files = NULL,
+                        is_paired,
                         out_dir,
                         subdir_name = "optimal_idr_analysis",
-                        paired_end = FALSE,
                         ...){
   final_out_dir <- create_or_use_dir(out_dir, subdir_name)
 
@@ -35,15 +32,15 @@ optimal_idr <- function(treat_files,
   # outputs list
   pseudo_treat <-
     generate_pseudoreplicates(pooled_files[1],
-                              output_dir = final_out_dir,
-                              paired_end = paired_end,
+                              out_dir = final_out_dir,
+                              is_paired = is_paired,
                               is_control = FALSE)
 
    if (length(pooled_files) == 2) {
     # Generate pseudoreplicates for the control file
     pseudo_ctrl <- generate_pseudoreplicates(pooled_files[2],
-                                             output_dir = final_out_dir,
-                                             paired_end = paired_end,
+                                             out_dir = final_out_dir,
+                                             is_paired = is_paired,
                                              is_control = TRUE)
   } else {
     pseudo_ctrl <- NULL
@@ -60,6 +57,7 @@ optimal_idr <- function(treat_files,
         tfile = pseudo_treat[[paste0("pseudoreplicate", i)]],
         cfile = pseudo_ctrl[[paste0("pseudoreplicate", i)]],
         out_dir = final_out_dir,
+        format = ifelse(is_paired, "BAMPE", "BAM"),
         out_name = paste0("rep", i),
         ...)
 

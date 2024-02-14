@@ -7,9 +7,9 @@
 optimal_idr(
   treat_files,
   control_files = NULL,
+  is_paired,
   out_dir,
   subdir_name = "optimal_idr_analysis",
-  paired_end = FALSE,
   ...
 )
 }
@@ -20,24 +20,20 @@ files.}
 \item{control_files}{Character vector containing paths to the control BAM
 files.}
 
+\item{is_paired}{Logical, specifying whether or not the BAM file is
+paired-end.}
+
 \item{out_dir}{Character specifying the name of the output directory in which
 a subdirectory containing the output files will be created.}
 
 \item{subdir_name}{Character specifying the name of the subdirectory that the
 output files will be written to.}
-
-\item{paired_end}{Logical, indicating if the BAM file is paired-end. This
-controls the behaviour of pseudoreplicate generation. Default is
-\code{FALSE}.}
-
-\item{...}{Additional parameters to be passed to the \code{macs_call_peak()}
-function.}
 }
 \value{
 Summary of the IDR output
 }
 \description{
-\code{optimal(idr)} runs the optimal IDR analysis. This involves pooling of
-the biological replicate BAM files, shuffling the reads and  and splitting
-into pseudoreplicates.
+\code{optimal_idr()} runs the optimal IDR analysis. This involves pooling of
+the biological replicate BAM files, shuffling the reads splitting into
+pseudoreplicates.
 }

@@ -6,19 +6,19 @@
 \usage{
 generate_pseudoreplicates(
   pooled_bam,
-  output_dir,
-  paired_end = TRUE,
+  out_dir,
+  is_paired = TRUE,
   is_control = FALSE
 )
 }
 \arguments{
 \item{pooled_bam}{The path to the pooled BAM file.}
 
+\item{is_control}{Logical, indicating if the BAM file is a control.}
+
 \item{output_dir}{The directory to save the output BAM files.}
 
 \item{paired_end}{Logical, indicating if the BAM file is paired-end.}
-
-\item{is_control}{Logical, indicating if the BAM file is a control.}
 }
 \value{
 A list containing paths to the pseudoreplicate BAM files.

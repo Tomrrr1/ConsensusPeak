@@ -11,8 +11,8 @@
 stopper <- function(..., v = TRUE) {
   msg <- paste(...)
   if (v) {
-    stop(msg)
+    stop(msg, call.=FALSE)
   } else {
-    stop()
+    stop(call. = FALSE)
   }
 }

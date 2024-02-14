@@ -5,6 +5,25 @@ output: github_document
 date: "2024-02-04"
 ---
 
+## ConsensusPeak
 
-## R Markdown
-Package for calling consensus peaks from multiple biological replicates.
+This is an R Package for calling consensus peaks from multiple biological 
+replicates. The program accepts histones or transcription factors, and can
+handle >= 2 biological replicates. The consensus peak calling approach depends
+on the sample type (histone or TF) and on the number of replicates.
+
+
+TF, n = 2: Irreproducible Discovery Rate (IDR) thresholding. The analysis can be
+performed in a conservative or optimal setting.
+
+TF, n >2: Multiple Sample Peak Calling (MSPC).
+
+Histones: Simple overlap of peaks across different replicates.
+
+
+
+
+
+
+
+

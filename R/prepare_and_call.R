@@ -4,16 +4,13 @@
 #' this list to the macs_call_peak() function. The output is a list comprising
 #' file paths to the resulting peak files.
 #'
-#' @param ... Additional parameters to pass to macs_call_peak
-#'
-#' Prepare and call will be used in all analyses except optimal_idr. Editing this
-#' function to accommodate pseudoreplicates adds unnecessary complexity. The optimal
-#' idr function will use a custom version of this code
+#' @inheritParams conservative_idr
 #'
 #' @keywords internal
 
 prepare_and_call <- function(treat_files,
                              control_files = NULL,
+                             is_paired,
                              out_dir,
                              ...){
   named_list <-
@@ -31,7 +28,8 @@ prepare_and_call <- function(treat_files,
         tfile = named_list[[paste0("treatment_file_", i)]],
         cfile = named_list[[paste0("control_file_", i)]],
         out_dir = out_dir,
-        out_name = paste0("rep", i),
+        format = ifelse(is_paired, "BAMPE", "BAM"),
+        name = paste0("rep", i),
         ...)
 
   }
