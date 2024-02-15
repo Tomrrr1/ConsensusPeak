@@ -25,6 +25,7 @@ macs_call_peak <- function(..., name, out_dir = ".") {
   result <-
     MACSr::callpeak(outdir = normalised_out_dir, name = name, ...)
 
-  # Return path to the narrowPeak file
-  return(result$outputs[1])
+  # return path to broadPeak or narrowPeak file
+  peak_idx <- grep("\\.broadPeak$|\\.narrowPeak$", basename(result$outputs))
+  return(result$output[peak_idx])
 }

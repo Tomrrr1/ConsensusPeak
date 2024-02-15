@@ -33,6 +33,6 @@ prepare_and_call <- function(treat_files,
         ...)
 
   }
-
+  print(result_list)
   return(result_list)
 }

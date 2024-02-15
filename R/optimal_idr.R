@@ -58,7 +58,7 @@ optimal_idr <- function(treat_files,
         cfile = pseudo_ctrl[[paste0("pseudoreplicate", i)]],
         out_dir = final_out_dir,
         format = ifelse(is_paired, "BAMPE", "BAM"),
-        out_name = paste0("rep", i),
+        name = paste0("rep", i),
         ...)
 
   }

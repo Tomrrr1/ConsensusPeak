@@ -7,7 +7,6 @@
 #'
 #' @inheritParams conservative_idr
 #' @inheritParams rmspc::mspc
-#' @inheritDotParams MACSr::callpeak -tfile -cfile -outdir -name -format -log
 #' @returns A list containing a summary of the MSPC along with the path to the
 #' output files.
 multiple_replicates_mspc <- function(treat_files,

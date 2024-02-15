@@ -19,3 +19,17 @@
 #             pvalue = 1e-3,
 #             extsize = 150,
 #             keepduplicates = "all")
+
+
+# idr_analysis(treat_files = c("./tests/testthat/testdata/r1_test_creb.bam",
+#                              "./tests/testthat/testdata/r2_test_creb.bam"),
+#              out_dir = "./",
+#              is_paired = FALSE,
+#              nomodel = FALSE,
+#              shift = -75,
+#              pvalue = 1e-3,
+#              extsize = 150,
+#              keepduplicates = "all")
+
+
+
