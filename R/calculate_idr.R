@@ -6,11 +6,11 @@
 #'
 #' @importFrom idr2d estimate_idr1d
 #'
-#' @param peak_file_1 Path to the .narrowPeak file of biological replicate 1
-#' @param peak_file_2 Path to the .narrowPeak file of biological replicate 2
+#' @param peak_file_1 Path to the .narrowPeak file of biological replicate 1.
+#' @param peak_file_2 Path to the .narrowPeak file of biological replicate 2.
 #' @param stringent if `TRUE` threshold at 0.01. If `FALSE`, threshold at 0.05.
 #' @param out_dir Path to the directory where the high-confidence peaks are
-#' written
+#' written.
 #'
 #' @returns A summary of the peaks that passed the IDR threshold and the path
 #' to the .narrowPeak file containing the peaks that passed this threshold.
@@ -39,7 +39,8 @@ calculate_idr <- function(peak_file_1,
                                 unlist(summary(idr_results)[5]))
 
   if (n_thresholded_peaks == 0) {
-    return("No peaks passed the threshold. No output generated.")
+    messager("No peaks passed the threshold. No output generated.")
+    return(NULL)
   }
 
   # Extract the top n peaks and write to .narrowPeak
@@ -61,9 +62,12 @@ calculate_idr <- function(peak_file_1,
     col.names = FALSE
   )
 
+  threshold <- if(stringent) 0.01 else 0.05
+  messager("Peaks that passed IDR thresholding at", threshold,
+           "have been written to", output_file_path)
+
   return(list(
-    "IDR results" = summary(idr_results),
-    "Path to output file" =  output_file_path
+    "IDR results" = summary(idr_results)
   ))
 }
 

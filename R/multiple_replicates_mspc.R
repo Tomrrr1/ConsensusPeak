@@ -23,7 +23,7 @@ multiple_replicates_mspc <- function(treat_files,
                                      keep=TRUE,
                                      ...) {
   if(check_dotnet_version() == FALSE) {
-    stopper("Halting multiple replicate analysis")
+    stopper()
   }
 
   final_out_dir <- create_or_use_dir(out_dir, subdir_name)
@@ -36,8 +36,8 @@ multiple_replicates_mspc <- function(treat_files,
       ...
     ) # outputs a named list of peak files
 
-  peak_file_paths <- process_peak_file(peak_list,
-                                       final_out_dir)
+  peak_file_paths <- process_peak_file(peak_list = peak_list,
+                                       out_dir = final_out_dir)
 
   result_mspc <-
     rmspc::mspc(input = peak_file_paths,
@@ -58,5 +58,4 @@ multiple_replicates_mspc <- function(treat_files,
       "Output path" = msg
     )
   )
-
 }

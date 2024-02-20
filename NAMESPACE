@@ -2,8 +2,12 @@
 
 export(calculate_idr)
 export(conservative_idr)
+export(generate_pseudoreplicates)
+export(idr_analysis)
 export(macs_call_peak)
 export(optimal_idr)
-import(Rsamtools)
+export(overlap_analysis)
+import(GenomicAlignments)
+import(rtracklayer)
 importFrom(MACSr,callpeak)
 importFrom(idr2d,estimate_idr1d)

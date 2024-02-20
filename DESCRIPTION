@@ -19,9 +19,11 @@ Depends:
   R (>= 4.2.0)
 Imports:
   ChIPpeakAnno,
+  GenomicAlignments,
   idr2d,
   MACSr,
-  Rsamtools
+  Rsamtools,
+  rtracklayer
 Suggests: 
   rmspc,
   rworkflows,

@@ -26,8 +26,6 @@ optimal_idr <- function(treat_files,
   # outputs vector
   pooled_files <- pool_files(named_list = named_list,
                              out_dir = final_out_dir)
-  messager("BAM files have been pooled.
-           Proceeding to pseudoreplicate generation.")
 
   # outputs list
   pseudo_treat <-
@@ -45,9 +43,6 @@ optimal_idr <- function(treat_files,
   } else {
     pseudo_ctrl <- NULL
   }
-
-  messager("Pseudoreplicates have been generated. Starting peak calling with
-           MACS3")
 
   result_list <- list()
   for(i in seq_len(length(treat_files))){

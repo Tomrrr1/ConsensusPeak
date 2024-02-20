@@ -1,4 +1,6 @@
-# Process peak files before input to MSPC.
+#' Process peak files before input to MSPC.
+#'
+#' @keywords internal
 
 process_peak_file <- function(peak_list,
                               out_dir) {
@@ -10,7 +12,6 @@ process_peak_file <- function(peak_list,
     peak <- utils::read.table(peak_file, header = FALSE)
     peak_df <- peak[, c(1, 2, 3, 4, 8, 6)] # columns required for MSPC
 
-    #output_file_name <- paste0("processed_peak_rep_", i, ".bed")
     output_file_path <- file.path(out_dir,
                                   paste0("processed_peak_rep_", i, ".bed"))
 

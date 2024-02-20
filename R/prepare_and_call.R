@@ -19,7 +19,6 @@ prepare_and_call <- function(treat_files,
       control_files = control_files
     )
 
-  messager("All files have been checked. Starting peak calling with MACS3.")
   result_list <- list()
   for(i in seq_len(length(treat_files))){
 
@@ -33,6 +32,6 @@ prepare_and_call <- function(treat_files,
         ...)
 
   }
-  print(result_list)
+
   return(result_list)
 }

@@ -8,9 +8,9 @@ test_that("Pseudoreplicate BAM files are created and they are not identical", {
 
   # Call the function with the temporary output directory
   result <- generate_pseudoreplicates(
-    pooled_bam = pooled_bam,
+    bam_file = pooled_bam,
     out_dir = temp_output_dir,
-    paired_end = TRUE,
+    is_paired = TRUE,
     is_control = FALSE
   )
 

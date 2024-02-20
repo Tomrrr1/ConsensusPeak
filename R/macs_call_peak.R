@@ -16,9 +16,6 @@
 #' @export
 
 macs_call_peak <- function(..., name, out_dir = ".") {
-
-  messager("\nCalling peaks with MACSr")
-
   # mustWork=TRUE forces an error if out_dir does not exist
   normalised_out_dir <- normalizePath(out_dir, mustWork = TRUE)
 

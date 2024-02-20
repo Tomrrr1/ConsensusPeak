@@ -7,14 +7,14 @@
 calculate_idr(peak_file_1, peak_file_2, stringent = TRUE, out_dir)
 }
 \arguments{
-\item{peak_file_1}{Path to the .narrowPeak file of biological replicate 1}
+\item{peak_file_1}{Path to the .narrowPeak file of biological replicate 1.}
 
-\item{peak_file_2}{Path to the .narrowPeak file of biological replicate 2}
+\item{peak_file_2}{Path to the .narrowPeak file of biological replicate 2.}
 
 \item{stringent}{if `TRUE` threshold at 0.01. If `FALSE`, threshold at 0.05.}
 
 \item{out_dir}{Path to the directory where the high-confidence peaks are
-written}
+written.}
 }
 \value{
 A summary of the peaks that passed the IDR threshold and the path

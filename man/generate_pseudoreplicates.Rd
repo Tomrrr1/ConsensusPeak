@@ -5,24 +5,33 @@
 \title{Generate pseudoreplicate BAM files}
 \usage{
 generate_pseudoreplicates(
-  pooled_bam,
-  out_dir,
-  is_paired = TRUE,
-  is_control = FALSE
+  bam_file,
+  is_paired = FALSE,
+  is_control = FALSE,
+  out_dir
 )
 }
 \arguments{
-\item{pooled_bam}{The path to the pooled BAM file.}
+\item{is_paired}{Logical, indicating if the BAM file is paired-end.}
 
 \item{is_control}{Logical, indicating if the BAM file is a control.}
 
-\item{output_dir}{The directory to save the output BAM files.}
+\item{out_dir}{The directory to save the output BAM files.}
 
-\item{paired_end}{Logical, indicating if the BAM file is paired-end.}
+\item{pooled_bam}{The path to the pooled BAM file.}
 }
 \value{
 A list containing paths to the pseudoreplicate BAM files.
 }
 \description{
 Generate pseudoreplicate BAM files
+}
+\examples{
+\dontrun{
+pooled_bam <- testthat::test_path("testdata", "merged_treatment.bam")
+generate_pseudoreplicates(bam_file = pooled_bam,
+                          out_dir = tempdir(),
+                          is_paired = FALSE,
+                          is_control = FALSE)
+                          }
 }
