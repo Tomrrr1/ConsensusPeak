@@ -21,10 +21,10 @@ overlap_analysis(
 files.}
 
 \item{control_files}{Character vector containing paths to the control BAM
-files.}
+files. The default is NULL}
 
-\item{is_paired}{Logical, specifying whether or not the BAM file is
-paired-end.}
+\item{is_paired}{Logical, specifying whether or not the BAM files are
+paired-end. The default is FALSE.}
 
 \item{maxgap, minoverlap}{Used in the internal call to \code{findOverlaps()}
 to detect overlaps. See
@@ -47,11 +47,9 @@ if 5 peaks in group1 overlap with 2 peaks in group 2, setting connectedPeaks
  will add 5 peaks to count.group1, 2 to count.group2, and 2 to counts; 
  setting it to “min” will add 2 to the overlapping counts.}
 
-\item{out_dir}{Character specifying the name of the output directory in which
-a subdirectory containing the output files will be created.}
-
-\item{subdir_name}{Character specifying the name of the subdirectory that the
-output files will be written to.}
+\item{out_dir}{Character specifying the path at which the results directory
+will be created. By default, the results directories are created in
+tempdir().}
 
 \item{...}{
   Arguments passed on to \code{\link[MACSr:callpeak]{MACSr::callpeak}}

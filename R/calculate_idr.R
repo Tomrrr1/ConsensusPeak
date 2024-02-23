@@ -5,6 +5,10 @@
 #' file in the specified `out_dir`
 #'
 #' @importFrom idr2d estimate_idr1d
+#' @import GenomicRanges
+#' @import IRanges
+#' @import ChIPpeakAnno
+#' @import rtracklayer
 #'
 #' @param peak_file_1 Path to the .narrowPeak file of biological replicate 1.
 #' @param peak_file_2 Path to the .narrowPeak file of biological replicate 2.
@@ -47,20 +51,29 @@ calculate_idr <- function(peak_file_1,
   peak1_ordered <- peak1[order(peak1[, 9], decreasing = TRUE), ]
   top_peaks <- peak1_ordered[1:n_thresholded_peaks, ]
 
+  # Convert top_peaks and peak2 to GRanges objects
+  gr1 <- GenomicRanges::GRanges(
+    seqnames = top_peaks[,1],
+    ranges = IRanges::IRanges(start = top_peaks[,2], end = top_peaks[,3]))
+
+  gr2 <- GenomicRanges::GRanges(
+    seqnames = peak2_df[,1],
+    ranges = IRanges::IRanges(start = peak2_df[,2], end = peak2_df[,3]))
+
+  suppressMessages({
+  overlaps <-
+    ChIPpeakAnno::findOverlapsOfPeaks(gr1, gr2, connectedPeaks = "merge")
+  })
+  result <- overlaps$peaklist$`gr1///gr2`
+  names(result) <- paste0("peak_", seq_along(result))
+
   output_file_name <- ifelse(stringent,
                              "IDR_peaks_01.narrowPeak",
                              "IDR_peaks_05.narrowPeak")
   output_file_path <-
     file.path(normalised_out_dir, output_file_name)
 
-  utils::write.table(
-    top_peaks,
-    file = output_file_path,
-    quote = FALSE,
-    sep = "\t",
-    row.names = FALSE,
-    col.names = FALSE
-  )
+  rtracklayer::export(result, con = output_file_path, format = "narrowPeak")
 
   threshold <- if(stringent) 0.01 else 0.05
   messager("Peaks that passed IDR thresholding at", threshold,
@@ -70,4 +83,32 @@ calculate_idr <- function(peak_file_1,
     "IDR results" = summary(idr_results)
   ))
 }
+
+#
+# peaks1 <- "conservative_idr_analysis/rep1_peaks.narrowPeak"
+# peaks2 <- "conservative_idr_analysis/rep2_peaks.narrowPeak"
+#
+# peaks1 <- utils::read.table(peaks1, header = FALSE)
+# peaks2 <- utils::read.table(peaks2, header = FALSE)
+#
+# gr1 <- GenomicRanges::GRanges(
+#   seqnames = peaks1[,1],
+#   ranges = IRanges::IRanges(start = peaks1[,2], end = peaks1[,3]))
+#
+# gr2 <- GenomicRanges::GRanges(
+#   seqnames = peaks2[,1],
+#   ranges = IRanges::IRanges(start = peaks2[,2], end = peaks2[,3]))
+#
+# names(gr1) <- peaks1[,4]
+# names(gr2) <- peaks2[,4]
+#
+# combined <- ChIPpeakAnno::findOverlapsOfPeaks(gr1, gr2, connectedPeaks = "merge")
+#
+#
+#
+#
+#
+#
+#
+# out <- combined$peaklist$`gr1///gr2` # these peaks are merged.
 

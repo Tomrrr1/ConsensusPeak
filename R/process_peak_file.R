@@ -10,7 +10,7 @@ process_peak_file <- function(peak_list,
   for (i in seq_along(peak_files)) {
     peak_file <- peak_files[i]
     peak <- utils::read.table(peak_file, header = FALSE)
-    peak_df <- peak[, c(1, 2, 3, 4, 8, 6)] # columns required for MSPC
+    peak_df <- peak[, c(1, 2, 3, 4, 8, 6)] # macs3 columns required for MSPC
 
     output_file_path <- file.path(out_dir,
                                   paste0("processed_peak_rep_", i, ".bed"))

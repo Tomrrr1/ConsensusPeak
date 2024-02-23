@@ -1,6 +1,7 @@
 #' Generate pseudoreplicate BAM files
 #'
 #' @import GenomicAlignments
+#' @import Rsamtools
 #' @import rtracklayer
 #'
 #' @param pooled_bam The path to the pooled BAM file.
@@ -26,47 +27,49 @@ generate_pseudoreplicates <- function(bam_file,
   out_dir <- normalizePath(out_dir)
 
   if(is_paired){
-    gal <- GenomicAlignments::readGAlignmentPairs(bam_file,
-                                                  param = ScanBamParam(
-                                                    what = c(
-                                                      "qname",
-                                                      "flag",
-                                                      "rname",
-                                                      "strand",
-                                                      "pos",
-                                                      "qwidth",
-                                                      "mapq",
-                                                      "cigar",
-                                                      "mrnm",
-                                                      "mpos",
-                                                      "isize",
-                                                      "seq",
-                                                      "qual",
-                                                      "groupid",
-                                                      "mate_status"
-                                                    )
-                                                  ))
+    gal <- GenomicAlignments::readGAlignmentPairs(
+      bam_file,
+      param = Rsamtools::ScanBamParam(
+        what = c(
+          "qname",
+          "flag",
+          "rname",
+          "strand",
+          "pos",
+          "qwidth",
+          "mapq",
+          "cigar",
+          "mrnm",
+          "mpos",
+          "isize",
+          "seq",
+          "qual",
+          "groupid",
+          "mate_status"
+          )
+        ))
   } else {
-    gal <- GenomicAlignments::readGAlignments(bam_file,
-                                              param = ScanBamParam(
-                                                what = c(
-                                                  "qname",
-                                                  "flag",
-                                                  "rname",
-                                                  "strand",
-                                                  "pos",
-                                                  "qwidth",
-                                                  "mapq",
-                                                  "cigar",
-                                                  "mrnm",
-                                                  "mpos",
-                                                  "isize",
-                                                  "seq",
-                                                  "qual",
-                                                  "groupid",
-                                                  "mate_status"
-                                                )
-                                              ))
+    gal <- GenomicAlignments::readGAlignments(
+      bam_file,
+      param = Rsamtools::ScanBamParam(
+        what = c(
+          "qname",
+          "flag",
+          "rname",
+          "strand",
+          "pos",
+          "qwidth",
+          "mapq",
+          "cigar",
+          "mrnm",
+          "mpos",
+          "isize",
+          "seq",
+          "qual",
+          "groupid",
+          "mate_status"
+          )
+        ))
   }
 
   indices <-

@@ -1,0 +1,54 @@
+#' Call peaks with MACSr and generate consensus set with ChIP-R
+#'
+#' \code{multiple_replicates_mspc()} is a wrapper of the \link{rmspc}{mspc()}
+#' function. MSPC handles an arbitrary number of replicates, but is not
+#' recommended for the simple case of n = 2, where we suggest using
+#' \code{conservative_idr()} or \code{optimal_idr()}.
+#'
+#' @inheritParams conservative_idr
+#' @inheritParams run_chipr
+#' @returns A list containing a summary of the MSPC along with the path to the
+#' output files.
+#' @export
+multiple_replicates_chipr <- function(treat_files,
+                                      control_files = NULL,
+                                      is_paired = FALSE,
+                                      out_dir = tempdir(),
+                                      subdir_name = "chipr_analysis",
+                                      minentries = 2,
+                                      rankmethod = "pvalue",
+                                      duphandling = "average",
+                                      fragment = FALSE,
+                                      seed = 0.5,
+                                      alpha = 0.05,
+                                      size = 20,
+                                      ...) {
+  final_out_dir <- create_or_use_dir(out_dir, subdir_name)
+  peak_list <-
+    prepare_and_call(
+      treat_files = treat_files,
+      control_files = control_files,
+      is_paired = is_paired,
+      out_dir = final_out_dir,
+      ...
+    ) # outputs a named list of peak files
+
+  peak_file_paths <- unlist(peak_list)
+  result_chipr <- run_chipr(peak_files = peak_file_paths,
+                            out_name = file.path(final_out_dir, "out"),
+                            minentries = minentries,
+                            rankmethod = rankmethod,
+                            duphandling = duphandling,
+                            fragment = fragment,
+                            seed = seed,
+                            alpha = alpha,
+                            size = size)
+
+  msg <- paste0("All output files are stored at ", final_out_dir)
+  return(
+    list(
+      "Results" = result_chipr,
+      "Output path" = msg
+    )
+  )
+}

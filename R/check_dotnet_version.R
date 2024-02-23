@@ -23,4 +23,3 @@ check_dotnet_version <- function() {
     }
   )
 }
-

@@ -86,7 +86,7 @@ overlap_analysis <- function(treat_files,
   # Subset the consensus peaks that are found in ALL replicates. This entry
   # will have the longest name
   result <- result$peaklist[[which.max(nchar(names(result$peaklist)))]]
-  export(result, con = out_file, format = suffix)
+  rtracklayer::export(result, con = out_file, format = suffix)
 
   return(list("Output file path" = out_file))
 }

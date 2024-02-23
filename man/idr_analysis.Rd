@@ -8,8 +8,8 @@ idr_analysis(
   treat_files,
   control_files = NULL,
   type = "all",
-  is_paired,
-  out_dir,
+  is_paired = FALSE,
+  out_dir = tempdir(),
   ...
 )
 }
@@ -18,16 +18,17 @@ idr_analysis(
 files.}
 
 \item{control_files}{Character vector containing paths to the control BAM
-files.}
+files. The default is NULL}
 
-\item{type}{String denoting the analysis type. Either "conservative" or
-"optimal".}
+\item{type}{String denoting the analysis type. Either "conservative",
+"optimal" or "all". The default is "all"}
 
-\item{is_paired}{Logical, specifying whether or not the BAM file is
-paired-end.}
+\item{is_paired}{Logical, specifying whether or not the BAM files are
+paired-end. The default is FALSE.}
 
-\item{out_dir}{Character specifying the name of the output directory in which
-a subdirectory containing the output files will be created.}
+\item{out_dir}{Character specifying the path at which the results directory
+will be created. By default, the results directories are created in
+tempdir().}
 
 \item{...}{
   Arguments passed on to \code{\link[MACSr:callpeak]{MACSr::callpeak}}
@@ -97,9 +98,6 @@ information. DEFAULT: 100000.}
 critical message, 1: show additional warning message, 2: show
 process information, 3: show debug messages. DEFAULT:2}
   }}
-
-\item{subdir_name}{Character specifying the name of the subdirectory that the
-output files will be written to.}
 }
 \value{
 A list containing a summary of the IDR analysis along with the path
@@ -111,10 +109,14 @@ analysis can be used to generate a "conservative" or "optimal" set of peaks.
 }
 \examples{
 \dontrun{
-idr_analysis(treat_files = c("treat1.bam", "treat2.bam"),
-            control_files = c("control1.bam", "control2.bam"),
+input1 <- testthat::test_path("testdata", "r1_test_creb.bam")
+input2 <- testthat::test_path("testdata", "r2_test_creb.bam")
+
+idr_analysis(treat_files = c(input1, input2),
+            control_files = NULL
             type = "all",
-            is_paired = TRUE,
-            out_dir = "/path/to/output/directory")
+            is_paired = FALSE,
+            out_dir = tempdir()
+            )
             }
 }

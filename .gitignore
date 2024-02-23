@@ -4,3 +4,4 @@
 .Ruserdata
 tests/testthat/testdata/*creb*
 *analysis
+inst/doc
