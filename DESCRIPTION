@@ -11,7 +11,7 @@ Description: Generate consensus peak sets from multiple biological replicates.
   (IDR) thresholding is used to call peaks. Alternatively, if the data are 
   histones, then consensus peaks are simply those that overlap across 
   replicates.
-URL: https://github.com/Tomrrr1/ConsensusPeak
+URL: https://github.com/neurogenomics/ConsensusPeak
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
@@ -37,5 +37,5 @@ Suggests:
     withr
 Config/testthat/edition: 3
 RoxygenNote: 7.3.1
-BugReports: https://github.com/Tomrrr1/ConsensusPeak/issues
+BugReports: https://github.com/neurogenomics/ConsensusPeak/issues
 VignetteBuilder: knitr

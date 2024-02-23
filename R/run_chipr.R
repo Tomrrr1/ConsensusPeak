@@ -26,7 +26,8 @@
 #' determined by the size of surrounding peaks, but in the case that there are
 #' none, this value will be used. The default is 20.
 #' @returns NULL
-#' @export
+#'
+#' @keywords internal
 
 run_chipr <- function(peak_files,
                       out_name = "chipr_out",
@@ -61,7 +62,7 @@ run_chipr <- function(peak_files,
            cmd)
   # Start the Basilisk environment
   proc <- basilisk::basiliskStart(env_chipr)
-  on.exit(basilisk::basiliskStop(proc))
+  withr::defer(basilisk::basiliskStop(proc))
 
   # Execute the command within the Basilisk environment
   basilisk::basiliskRun(proc, function() {

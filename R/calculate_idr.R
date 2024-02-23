@@ -68,8 +68,8 @@ calculate_idr <- function(peak_file_1,
   names(result) <- paste0("peak_", seq_along(result))
 
   output_file_name <- ifelse(stringent,
-                             "IDR_peaks_01.narrowPeak",
-                             "IDR_peaks_05.narrowPeak")
+                             "IDR_peaks_01.bed",
+                             "IDR_peaks_05.bed")
   output_file_path <-
     file.path(normalised_out_dir, output_file_name)
 
@@ -80,35 +80,7 @@ calculate_idr <- function(peak_file_1,
            "have been written to", output_file_path)
 
   return(list(
-    "IDR results" = summary(idr_results)
+    "IDR results" = summary(idr_results),
+    "File location" = output_file_path
   ))
 }
-
-#
-# peaks1 <- "conservative_idr_analysis/rep1_peaks.narrowPeak"
-# peaks2 <- "conservative_idr_analysis/rep2_peaks.narrowPeak"
-#
-# peaks1 <- utils::read.table(peaks1, header = FALSE)
-# peaks2 <- utils::read.table(peaks2, header = FALSE)
-#
-# gr1 <- GenomicRanges::GRanges(
-#   seqnames = peaks1[,1],
-#   ranges = IRanges::IRanges(start = peaks1[,2], end = peaks1[,3]))
-#
-# gr2 <- GenomicRanges::GRanges(
-#   seqnames = peaks2[,1],
-#   ranges = IRanges::IRanges(start = peaks2[,2], end = peaks2[,3]))
-#
-# names(gr1) <- peaks1[,4]
-# names(gr2) <- peaks2[,4]
-#
-# combined <- ChIPpeakAnno::findOverlapsOfPeaks(gr1, gr2, connectedPeaks = "merge")
-#
-#
-#
-#
-#
-#
-#
-# out <- combined$peaklist$`gr1///gr2` # these peaks are merged.
-

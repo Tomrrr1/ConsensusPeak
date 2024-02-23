@@ -45,11 +45,11 @@ conservative_idr <- function(treat_files,
                               stringent = TRUE,
                               out_dir = final_out_dir)
 
-  msg <- paste0("All output files are stored at ", final_out_dir)
+  messager("All output files are stored at ", final_out_dir)
   return(
     list(
       "Results" = result_idr,
-      "Output path" = msg
+      "Output path" = final_out_dir
     )
   )
 }
