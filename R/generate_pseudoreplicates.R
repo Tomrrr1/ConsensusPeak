@@ -14,9 +14,9 @@
 #' \dontrun{
 #' pooled_bam <- testthat::test_path("testdata", "merged_treatment.bam")
 #' generate_pseudoreplicates(bam_file = pooled_bam,
-#'                           out_dir = tempdir(),
 #'                           is_paired = FALSE,
-#'                           is_control = FALSE)
+#'                           is_control = FALSE,
+#'                           out_dir = tempdir())
 #'                           }
 #' @export
 generate_pseudoreplicates <- function(bam_file,
