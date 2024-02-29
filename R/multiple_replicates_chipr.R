@@ -10,7 +10,7 @@
 #' @returns A list containing a summary of the MSPC along with the path to the
 #' output files.
 #'
-#'  @examples
+#' @examples
 #' \dontrun{
 #' input1 <- testthat::test_path("testdata", "r1_test_creb.bam")
 #' input2 <- testthat::test_path("testdata", "r2_test_creb.bam")
@@ -57,11 +57,11 @@ multiple_replicates_chipr <- function(treat_files,
                             alpha = alpha,
                             size = size)
 
-  msg <- paste0("All output files are stored at ", final_out_dir)
+  messager("All output files are stored at ", final_out_dir)
   return(
     list(
       "Results" = result_chipr,
-      "Output path" = msg
+      "Output path" = final_out_dir
     )
   )
 }

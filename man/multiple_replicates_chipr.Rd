@@ -70,3 +70,16 @@ function. MSPC handles an arbitrary number of replicates, but is not
 recommended for the simple case of n = 2, where we suggest using
 \code{conservative_idr()} or \code{optimal_idr()}.
 }
+\examples{
+\dontrun{
+input1 <- testthat::test_path("testdata", "r1_test_creb.bam")
+input2 <- testthat::test_path("testdata", "r2_test_creb.bam")
+input3 <- testthat::test_path("testdata", "r3_test_creb.bam")
+
+multiple_replicates_chipr(treat_files = c(input1, input2, input3),
+                          out_dir = tempdir(),
+                          ...
+                          )
+                          }
+
+}

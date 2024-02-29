@@ -26,7 +26,7 @@
 #' input2 <- testthat::test_path("testdata", "r2_test_creb.bam")
 #'
 #' idr_analysis(treat_files = c(input1, input2),
-#'             control_files = NULL
+#'             control_files = NULL,
 #'             type = "all",
 #'             is_paired = FALSE,
 #'             out_dir = tempdir()
@@ -36,6 +36,7 @@ idr_analysis <- function(treat_files,
                          control_files = NULL,
                          type = "all",
                          is_paired = FALSE,
+                         idr_stringent = TRUE,
                          out_dir = tempdir(),
                          ...){
 
@@ -54,6 +55,7 @@ idr_analysis <- function(treat_files,
       conservative_idr(treat_files = treat_files,
                        control_files = control_files,
                        is_paired = is_paired,
+                       idr_stringent = idr_stringent,
                        out_dir = out_dir,
                        subdir_name = "conservative_idr_analysis",
                        ...)
@@ -66,6 +68,7 @@ idr_analysis <- function(treat_files,
       optimal_idr(treat_files = treat_files,
                   control_files = control_files,
                   is_paired = is_paired,
+                  idr_stringent = idr_stringent,
                   out_dir = out_dir,
                   subdir_name = "optimal_idr_analysis",
                   ...)

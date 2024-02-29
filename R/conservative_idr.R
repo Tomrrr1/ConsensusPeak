@@ -27,6 +27,7 @@
 conservative_idr <- function(treat_files,
                              control_files = NULL,
                              is_paired,
+                             idr_stringent,
                              out_dir,
                              subdir_name = "conservative_idr_analysis",
                              ...) {
@@ -42,7 +43,7 @@ conservative_idr <- function(treat_files,
 
   result_idr <- calculate_idr(peak_file_1 = peak_list[[1]],
                               peak_file_2 = peak_list[[2]],
-                              stringent = TRUE,
+                              stringent = idr_stringent,
                               out_dir = final_out_dir)
 
   messager("All output files are stored at ", final_out_dir)

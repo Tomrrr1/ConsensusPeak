@@ -5,9 +5,9 @@
 #'
 #' @importFrom MACSr callpeak
 #'
-#' @param ... Arguments to be passed to \link[MACSr]{callpeak()}
 #' @param out_dir Path to the output directory where all files will be written
-#' @param out_name Prefix for the output file names
+#' @param name Prefix for the output file name
+#' @inheritDotParams MACSr::callpeak -outdir -name
 #'
 #' @seealso \link[MACSr]{callpeak()} which this function wraps
 #' @return Full paths to the created \code{narrowPeak} or \link{broadPeak}

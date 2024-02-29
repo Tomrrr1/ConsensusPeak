@@ -1,10 +1,17 @@
 test_that("IDR peak file is created in the desired location", {
-  rep_treat_1 <- testthat::test_path("testdata", "r1_test_creb.bam")
-  rep_treat_2 <- testthat::test_path("testdata", "r2_test_creb.bam")
+  temp_out_dir <- withr::local_tempdir()
+
+  rep_treat_1 <- system.file("extdata",
+                             "r1_creb_chr22.bam",
+                             package = "ConsensusPeak")
+  rep_treat_2 <- system.file("extdata",
+                             "r2_creb_chr22.bam",
+                             package = "ConsensusPeak")
 
   result <- optimal_idr(
     treat_files = c(rep_treat_1, rep_treat_2),
-    out_dir = withr::local_tempdir(),
+    out_dir = temp_out_dir,
+    idr_stringent = TRUE,
     is_paired = FALSE,
     nomodel = TRUE
   )

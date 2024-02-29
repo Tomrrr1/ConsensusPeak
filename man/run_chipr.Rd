@@ -52,3 +52,4 @@ assesses the reproducibility of peaks across multiple biological replicates
 by adapting the rank product statistic. Parameter descriptions and
 defaults are taken from https://github.com/rhysnewell/ChIP-R.
 }
+\keyword{internal}

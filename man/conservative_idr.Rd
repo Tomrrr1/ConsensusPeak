@@ -8,6 +8,7 @@ conservative_idr(
   treat_files,
   control_files = NULL,
   is_paired,
+  idr_stringent,
   out_dir,
   subdir_name = "conservative_idr_analysis",
   ...

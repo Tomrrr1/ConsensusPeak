@@ -9,6 +9,7 @@ idr_analysis(
   control_files = NULL,
   type = "all",
   is_paired = FALSE,
+  idr_stringent = TRUE,
   out_dir = tempdir(),
   ...
 )
@@ -113,7 +114,7 @@ input1 <- testthat::test_path("testdata", "r1_test_creb.bam")
 input2 <- testthat::test_path("testdata", "r2_test_creb.bam")
 
 idr_analysis(treat_files = c(input1, input2),
-            control_files = NULL
+            control_files = NULL,
             type = "all",
             is_paired = FALSE,
             out_dir = tempdir()

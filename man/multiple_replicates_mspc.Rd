@@ -2,7 +2,8 @@
 % Please edit documentation in R/multiple_replicates_mspc.R
 \name{multiple_replicates_mspc}
 \alias{multiple_replicates_mspc}
-\title{Multiple Sample Peak Calling (MSPC)}
+\title{Call peaks with MACSr and generate a consensus set with Multiple Sample Peak
+Calling (MSPC)}
 \usage{
 multiple_replicates_mspc(
   treat_files,
@@ -77,7 +78,24 @@ output files.
 }
 \description{
 \code{multiple_replicates_mspc()} is a wrapper of the \link{rmspc}{mspc()}
-function. MSPC handles an arbitrary number of replicates, but is not
-recommended for the simple case of n = 2, where we suggest using
-\code{conservative_idr()} or \code{optimal_idr()}.
+function.
+}
+\examples{
+\dontrun{
+input1 <- testthat::test_path("testdata", "r1_test_creb.bam")
+input2 <- testthat::test_path("testdata", "r2_test_creb.bam")
+input3 <- testthat::test_path("testdata", "r3_test_creb.bam")
+
+multiple_replicates_mspc(treat_files = c(input1, input2, input3),
+                         out_dir = tempdir(),
+                         subdir_name = "mspc_analysis"
+                         is_paired = FALSE,
+                         replicateType = "Biological",
+                         stringencyThreshold = 1e-8,
+                         weakThreshold = 1e-4,
+                         c = 3,
+                         ...
+                         )
+                         }
+
 }

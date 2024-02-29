@@ -71,11 +71,11 @@ multiple_replicates_mspc <- function(treat_files,
                 keep = keep
                 )
 
-  msg <- paste0("All output files are stored at ", final_out_dir)
+  messager("All output files are stored at ", final_out_dir)
   return(
     list(
       "Results" = result_mspc,
-      "Output path" = msg
+      "Output path" = final_out_dir
     )
   )
 }

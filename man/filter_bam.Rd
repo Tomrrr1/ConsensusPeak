@@ -4,9 +4,10 @@
 \alias{filter_bam}
 \title{Filter BAM file to exclude the second mate in the read pair}
 \usage{
-filter_bam(bam_file)
+filter_bam(bam_file, out_dir)
 }
 \description{
 For Tn5-based methods like CUT&Tag and TIPseq, we recommend filtering
 paired-end BAM files to exclude the second mate in the read pair.
+If the BAM file does not have and index please run
 }

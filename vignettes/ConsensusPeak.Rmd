@@ -1,0 +1,82 @@
+---
+title: "ConsensusPeak"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ConsensusPeak}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Overview 
+
+Uncovering the locations where proteins bind to the genome is essential for 
+elucidating the regulatory mechanisms that control gene expression and influence 
+cellular function, development, and disease. Techniques such as ChIP-seq have 
+revolutionised our ability to precisely map these interactions. However, as
+single experiments are subject to substantial biological and technical
+variability, it is considered best practice to generate multiple biological 
+replicates.
+
+Given multiple biological replicates, the goal is to derive a single, 
+high-confidence set of peaks representing the 'true' locations that your
+protein binds. While several tools have been developed towards this goal, they 
+are dispersed across various packages and require diverse inputs, presenting a 
+challenge in terms of ease-of-use. To address this issue, we 
+introduce *ConsensusPeak*, an R package that aggregates several consensus peak 
+calling metrics within a cohesive and straightforward interface.
+
+The user simply has to supply BAM files. Peak calling is performed internally 
+using MACS3 and the output is fed directly into the thresholding methods.
+What other thresholding methods could we try? Or what other features could we 
+include?
+
+We could (1) merge bam (2) call merged peaks (3) call peaks on individual
+replicates (4) consensus peak is peak found in all or n number?
+
+- Irreproducible Discovery Rate (IDR) (n = 2)
+  - Optimal
+  - Conservative
+- Multiple Sample Peak Calling (MSPC)
+- Overlapping peak calls using findOverlapsOfPeaks (n < 5)
+- Majority-vote. Peaks in more than half of the replicates. Lets use something 
+- other than findoverlapsofpeaks as we are limited to 4 replicates. We can pick 
+a reference and then calculate overlap from the perspective of this reference.
+- CHiP-R. 
+
+Run all methods and then compare optimal peaks 
+using EpiCompare.
+
+<!-- \begin{itemize} -->
+<!--   \item Irreproducible Discovery Rate (IDR) (n = 2) -->
+<!--   \begin{enumerate} -->
+<!--     \item Optimal -->
+<!--     \item Conservative -->
+<!--   \end{enumerate} -->
+<!--   \item Multiple Sample Peak Calling (MSPC)  -->
+<!--   \item Overlapping peak calls (n < 5) -->
+<!-- \end{itemize} -->
+
+```{r include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(ConsensusPeak)
+```
+
+```{r eval=FALSE}
+# code here
+input1 <- system.file("extdata", "r1_test_creb.bam", package = "ConsensusPeak")
+input2 <- system.file("extdata", "r2_test_creb.bam", package = "ConsensusPeak")
+
+
+
+
+```
+
+
+
+

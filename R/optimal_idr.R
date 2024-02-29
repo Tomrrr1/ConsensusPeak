@@ -12,6 +12,7 @@
 optimal_idr <- function(treat_files,
                         control_files = NULL,
                         is_paired,
+                        idr_stringent,
                         out_dir,
                         subdir_name = "optimal_idr_analysis",
                         ...){
@@ -60,7 +61,7 @@ optimal_idr <- function(treat_files,
 
   result_idr <- calculate_idr(peak_file_1 = result_list[[1]],
                               peak_file_2 = result_list[[2]],
-                              stringent = TRUE,
+                              stringent = idr_stringent,
                               out_dir = final_out_dir)
 
   messager("All output files are stored at ", final_out_dir)
