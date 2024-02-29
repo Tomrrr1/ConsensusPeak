@@ -7,13 +7,9 @@
 prepare_named_list(treat_files, control_files = NULL)
 }
 \arguments{
-\item{rep_treat_1}{File path to the first treatment replicate.}
+\item{treat_files}{Character vector of paths to the treatment BAM files.}
 
-\item{rep_treat_2}{Optional file path to the second treatment replicate.}
-
-\item{rep_ctrl_1}{Optional file path to the first control replicate.}
-
-\item{rep_ctrl_2}{Optional file path to the second control replicate.}
+\item{control_files}{Character vector of paths to the control BAM files.}
 }
 \value{
 A named list of normalised file paths for the provided replicates

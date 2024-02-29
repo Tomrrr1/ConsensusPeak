@@ -10,6 +10,9 @@
 #' files.
 #' @param is_paired Logical, specifying whether or not the BAM file is
 #' paired-end.
+#' @param idr_stringent Logical relating to the IDR threshold. If set to TRUE
+#' then the threshold used by IDR is 0.01. If set to FALSE then the threshold
+#' is 0.05. The default is TRUE.
 #' @param out_dir Character specifying the name of the output directory in which
 #' a subdirectory containing the output files will be created.
 #' @param subdir_name Character specifying the name of the subdirectory that the
@@ -27,7 +30,7 @@
 conservative_idr <- function(treat_files,
                              control_files = NULL,
                              is_paired,
-                             idr_stringent,
+                             idr_stringent = TRUE,
                              out_dir,
                              subdir_name = "conservative_idr_analysis",
                              ...) {

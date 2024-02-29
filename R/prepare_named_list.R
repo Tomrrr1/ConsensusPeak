@@ -4,10 +4,8 @@
 #' and controls and constructs a named list. The function ensures that the file
 #' paths are valid and normalises them.
 #'
-#' @param rep_treat_1 File path to the first treatment replicate.
-#' @param rep_treat_2 Optional file path to the second treatment replicate.
-#' @param rep_ctrl_1 Optional file path to the first control replicate.
-#' @param rep_ctrl_2 Optional file path to the second control replicate.
+#' @param treat_files Character vector of paths to the treatment BAM files.
+#' @param control_files Character vector of paths to the control BAM files.
 #' @returns A named list of normalised file paths for the provided replicates
 #' and controls. The list will contain elements named "treatment_file_1",
 #' "treatment_file_2", "control_file_1", and "control_file_2", corresponding
