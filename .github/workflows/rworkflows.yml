@@ -40,10 +40,10 @@ jobs:
     - name: Install Conda (macOS)
       if: ${{ matrix.config.os == 'macOS-latest' }}
       run: |
-        wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O ~/miniconda.sh
-        bash ~/miniconda.sh -b -p $HOME/miniconda
+        wget https://repo.anaconda.com/miniconda/Miniconda3-py39_4.12.0-MacOSX-x86_64.sh -O miniconda.sh
+        bash miniconda.sh -b -p $HOME/miniconda
         echo "export PATH=$HOME/miniconda/bin:$PATH" >> $GITHUB_ENV
-        conda init bash
+        echo "BASILISK_CONDA=$HOME/miniconda" >> $GITHUB_ENV
     - uses: neurogenomics/rworkflows@master
       with:
         run_bioccheck: ${{ false }}
