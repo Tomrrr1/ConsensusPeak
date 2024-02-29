@@ -38,7 +38,7 @@ jobs:
           rspm: ~
     steps:
     - name: Install Conda (macOS)
-        if: matrix.config.os == 'macOS-latest'
+        if: ${{ matrix.config.os == 'macOS-latest' }}
         run: |
           wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O ~/miniconda.sh
           bash ~/miniconda.sh -b -p $HOME/miniconda
