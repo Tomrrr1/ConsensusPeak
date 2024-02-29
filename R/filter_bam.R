@@ -3,6 +3,9 @@
 #' For Tn5-based methods like CUT&Tag and TIPseq, we recommend filtering
 #' paired-end BAM files to exclude the second mate in the read pair.
 #' If the BAM file does not have and index please run
+#'
+#' @param bam_file Path to a paired-end BAM file
+#' @param out_dir Path to where the output filtered BAM file will be written.
 
 filter_bam <- function(bam_file,
                        out_dir) {

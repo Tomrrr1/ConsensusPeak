@@ -112,6 +112,3 @@ to the output files.
 by ENCODE. The function writes output files to a subdirectory in the
 specified \code{out_dir}.
 }
-\seealso{
-\link[ConsensusPeak]{macs_call_peak()}
-}

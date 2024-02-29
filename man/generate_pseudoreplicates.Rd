@@ -12,13 +12,13 @@ generate_pseudoreplicates(
 )
 }
 \arguments{
+\item{bam_file}{The path to the BAM file.}
+
 \item{is_paired}{Logical, indicating if the BAM file is paired-end.}
 
 \item{is_control}{Logical, indicating if the BAM file is a control.}
 
 \item{out_dir}{The directory to save the output BAM files.}
-
-\item{pooled_bam}{The path to the pooled BAM file.}
 }
 \value{
 A list containing paths to the pseudoreplicate BAM files.

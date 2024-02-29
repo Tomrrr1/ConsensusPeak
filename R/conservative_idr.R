@@ -20,7 +20,6 @@
 #' @inheritDotParams MACSr::callpeak -tfile -cfile -outdir -name -format -log
 #' -tempdir
 #'
-#' @seealso \link[ConsensusPeak]{macs_call_peak()}
 #'
 #' @returns A list containing a summary of the IDR analysis along with the path
 #' to the output files.

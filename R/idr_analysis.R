@@ -11,6 +11,9 @@
 #' "optimal" or "all". The default is "all"
 #' @param is_paired Logical, specifying whether or not the BAM files are
 #' paired-end. The default is FALSE.
+#' @param idr_stringent Logical, relating to the IDR threshold. If set to TRUE
+#' then the threshold used by IDR is 0.01. If set to FALSE then the threshold
+#' is 0.05. The default is TRUE.
 #' @param out_dir Character specifying the path at which the results directory
 #' will be created. By default, the results directories are created in
 #' tempdir().

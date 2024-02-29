@@ -5,6 +5,8 @@
 #' pseudoreplicates.
 #'
 #' @inheritParams conservative_idr
+#' @inheritDotParams MACSr::callpeak -tfile -cfile -outdir -name -format -log
+#' -tempdir
 #'
 #' @returns Summary of the IDR output
 #'

@@ -1,13 +1,13 @@
 #' Call peaks with MACSr and generate consensus set with ChIP-R
 #'
-#' \code{multiple_replicates_mspc()} is a wrapper of the \link{rmspc}{mspc()}
-#' function. MSPC handles an arbitrary number of replicates, but is not
-#' recommended for the simple case of n = 2, where we suggest using
-#' \code{conservative_idr()} or \code{optimal_idr()}.
+#' \code{multiple_replicates_chipr()} is a wrapper of the Python package ChIP-R.
+#' ChIP-R handles an arbitrary number of replicates.
 #'
 #' @inheritParams conservative_idr
 #' @inheritParams run_chipr
-#' @returns A list containing a summary of the MSPC along with the path to the
+#' @inheritDotParams MACSr::callpeak -tfile -cfile -outdir -name -format -log
+#' -tempdir
+#' @returns A list containing a summary of the ChIP-r along with the path to the
 #' output files.
 #'
 #' @examples

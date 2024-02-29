@@ -6,6 +6,11 @@
 \usage{
 filter_bam(bam_file, out_dir)
 }
+\arguments{
+\item{bam_file}{Path to a paired-end BAM file}
+
+\item{out_dir}{Path to where the output filtered BAM file will be written.}
+}
 \description{
 For Tn5-based methods like CUT&Tag and TIPseq, we recommend filtering
 paired-end BAM files to exclude the second mate in the read pair.

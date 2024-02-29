@@ -1,7 +1,6 @@
 #' Call peaks using MACSr
 #'
-#' This function is a wrapper of the \link[MACSr]{callpeak()} function from the
-#' \code{MACSr} package.
+#' Call peaks using MACSr, an R wrapper of the Python package MACS3.
 #'
 #' @importFrom MACSr callpeak
 #'
@@ -9,8 +8,7 @@
 #' @param name Prefix for the output file name
 #' @inheritDotParams MACSr::callpeak -outdir -name
 #'
-#' @seealso \link[MACSr]{callpeak()} which this function wraps
-#' @return Full paths to the created \code{narrowPeak} or \link{broadPeak}
+#' @return Full paths to the created \code{narrowPeak} or \code{broadPeak}
 #' file
 #'
 #' @export

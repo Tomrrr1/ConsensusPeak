@@ -87,13 +87,9 @@ process information, 3: show debug messages. DEFAULT:2}
 \item{out_dir}{Path to the output directory where all files will be written}
 }
 \value{
-Full paths to the created \code{narrowPeak} or \link{broadPeak}
+Full paths to the created \code{narrowPeak} or \code{broadPeak}
 file
 }
 \description{
-This function is a wrapper of the \link[MACSr]{callpeak()} function from the
-\code{MACSr} package.
-}
-\seealso{
-\link[MACSr]{callpeak()} which this function wraps
+Call peaks using MACSr, an R wrapper of the Python package MACS3.
 }

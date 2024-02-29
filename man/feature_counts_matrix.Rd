@@ -6,6 +6,12 @@
 \usage{
 feature_counts_matrix(peak_file, treat_files)
 }
+\arguments{
+\item{peak_file}{Path to the peak file.}
+
+\item{treat_files}{Character vector of paths to the BAM files that the peak
+file is derived from.}
+}
 \description{
 \code{feature_counts_matrix()} computes the number of reads from a BAM file
 that fall within the ranges of a peak within a set.

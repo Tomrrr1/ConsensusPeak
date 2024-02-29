@@ -4,7 +4,7 @@
 #' @import Rsamtools
 #' @import rtracklayer
 #'
-#' @param pooled_bam The path to the pooled BAM file.
+#' @param bam_file The path to the BAM file.
 #' @param is_paired Logical, indicating if the BAM file is paired-end.
 #' @param is_control Logical, indicating if the BAM file is a control.
 #' @param out_dir The directory to save the output BAM files.

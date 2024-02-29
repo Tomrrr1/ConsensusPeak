@@ -1,11 +1,12 @@
 #' Call peaks with MACSr and generate a consensus set with Multiple Sample Peak
 #' Calling (MSPC)
 #'
-#' \code{multiple_replicates_mspc()} is a wrapper of the \link{rmspc}{mspc()}
-#' function.
+#' \code{multiple_replicates_mspc()} is a wrapper of the MSPC function.
 #'
 #' @inheritParams conservative_idr
 #' @inheritParams rmspc::mspc
+#' @inheritDotParams MACSr::callpeak -tfile -cfile -outdir -name -format -log
+#' -tempdir
 #' @returns A list containing a summary of the MSPC along with the path to the
 #' output files.
 #'

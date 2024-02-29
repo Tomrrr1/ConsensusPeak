@@ -3,6 +3,11 @@
 #' \code{feature_counts_matrix()} computes the number of reads from a BAM file
 #' that fall within the ranges of a peak within a set.
 #'
+#' @param peak_file Path to the peak file.
+#' @param treat_files Character vector of paths to the BAM files that the peak
+#' file is derived from.
+#'
+#' @export
 
 feature_counts_matrix <- function(peak_file,
                                   treat_files) {

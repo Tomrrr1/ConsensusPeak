@@ -2,6 +2,7 @@
 
 export(calculate_idr)
 export(conservative_idr)
+export(feature_counts_matrix)
 export(generate_pseudoreplicates)
 export(idr_analysis)
 export(macs_call_peak)
