@@ -32,11 +32,6 @@ jobs:
           cont: ~
           rspm: ~
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup dotnet
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '6.0.x'
     - uses: neurogenomics/rworkflows@master
       with:
         run_bioccheck: ${{ false }}
