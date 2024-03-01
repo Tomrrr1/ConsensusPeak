@@ -1,16 +1,13 @@
 Package: ConsensusPeak
 Title: Call consensus peaks from multiple biological replicates
-Version: 0.0.0.9001
+Version: 0.0.0.9100
 Authors@R: 
   person(given = "Thomas", family = "Roberts", 
 	email = "tomroberts.work15@gmail.com", 
 	role = c("aut", "cre"),
 	comment = c(ORCID = "0009-0006-6244-8670"))
 Description: Generate consensus peak sets from multiple biological replicates. 
-  If the data are transcription factors, then Irreproducible Discovery Rate 
-  (IDR) thresholding is used to call peaks. Alternatively, if the data are 
-  histones, then consensus peaks are simply those that overlap across 
-  replicates.
+  Methods for consensus thresholding include IDR, MSPC and ChIP-R.
 URL: https://github.com/neurogenomics/ConsensusPeak
 License: GPL (>= 3)
 Encoding: UTF-8
