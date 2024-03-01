@@ -15,4 +15,7 @@ Authors: <i>Thomas Roberts</i>
 
 ## R Markdown
 
-Package for calling consensus peaks from multiple biological replicates.
+Package for calling consensus peaks from multiple biological replicates. 
+
+The package is unsupported on Windows because of its use of MACSr, a 
+bioconductor package that is itself unsupported.

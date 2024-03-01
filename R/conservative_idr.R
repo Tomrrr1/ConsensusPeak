@@ -1,8 +1,7 @@
 #' Conservative IDR analysis
 #'
 #' \code{conservative_idr()} performs the conservative IDR analysis as defined
-#' by ENCODE. The function writes output files to a subdirectory in the
-#' specified \code{out_dir}.
+#' by ENCODE. The function writes a filtered set of peaks to a desired location.
 #'
 #' @param treat_files Character vector containing paths to the treatment BAM
 #' files.
@@ -10,16 +9,14 @@
 #' files.
 #' @param is_paired Logical, specifying whether or not the BAM file is
 #' paired-end.
-#' @param idr_stringent Logical relating to the IDR threshold. If set to TRUE
-#' then the threshold used by IDR is 0.01. If set to FALSE then the threshold
-#' is 0.05. The default is TRUE.
+#' @param idr_stringent Logical. If set to TRUE then the threshold used by IDR
+#' is 0.01. If set to FALSE then the threshold is 0.05. The default is TRUE.
 #' @param out_dir Character specifying the name of the output directory in which
 #' a subdirectory containing the output files will be created.
 #' @param subdir_name Character specifying the name of the subdirectory that the
-#' output files will be written to.
+#' output files will be placed.
 #' @inheritDotParams MACSr::callpeak -tfile -cfile -outdir -name -format -log
 #' -tempdir
-#'
 #'
 #' @returns A list containing a summary of the IDR analysis along with the path
 #' to the output files.

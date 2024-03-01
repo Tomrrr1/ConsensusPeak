@@ -7,6 +7,7 @@
 #' @inheritParams run_chipr
 #' @inheritDotParams MACSr::callpeak -tfile -cfile -outdir -name -format -log
 #' -tempdir
+#'
 #' @returns A list containing a summary of the ChIP-r along with the path to the
 #' output files.
 #'
@@ -25,8 +26,8 @@
 #' @export
 multiple_replicates_chipr <- function(treat_files,
                                       control_files = NULL,
-                                      is_paired = FALSE,
-                                      out_dir = tempdir(),
+                                      is_paired,
+                                      out_dir,
                                       subdir_name = "chipr_analysis",
                                       minentries = 2,
                                       rankmethod = "pvalue",

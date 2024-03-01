@@ -1,18 +1,17 @@
-#' Generate a featureCounts matrix for a set of peaks
+#' Generate a featureCounts matrix for a peak set
 #'
 #' \code{feature_counts_matrix()} computes the number of reads from a BAM file
-#' that fall within the ranges of a peak within a set.
+#' that fall within each peak of your peak set.
 #'
 #' @param peak_file Path to the peak file.
-#' @param treat_files Character vector of paths to the BAM files that the peak
-#' file is derived from.
+#' @param bam_files Path to the BAM file(s) that the peak file was derived from.
 #'
 #' @export
 
 feature_counts_matrix <- function(peak_file,
-                                  treat_files) {
+                                  bam_files) {
   # create indexes for each bam file
-  for(bam_file in treat_files){
+  for(bam_file in bam_files){
     if (!file.exists(paste0(bam_file, ".bai"))) {
       bam_index <- indexBam(bam_file)
     } else {
@@ -42,9 +41,9 @@ feature_counts_matrix <- function(peak_file,
   # paired-end flags. We can use testPairedEndBam() to set isPairedEnd.
   count_matrix <-
     Rsubread::featureCounts(
-      files = treat_files,
+      files = bam_files,
       annot.ext = temp_saf_file,
-      isPairedEnd = Rsamtools::testPairedEndBam(treat_files[1]))
+      isPairedEnd = Rsamtools::testPairedEndBam(bam_files[1]))
 
   # Return the counts
   return(count_matrix)

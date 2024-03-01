@@ -28,7 +28,8 @@ Imports:
   reticulate,
   Rsamtools,
   Rsubread,
-  rtracklayer
+  rtracklayer,
+  utils
 Suggests: 
   knitr,
   rmarkdown,

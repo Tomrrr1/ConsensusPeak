@@ -1,8 +1,8 @@
 #' Optimal IDR analysis
 #'
 #' \code{optimal_idr()} runs the optimal IDR analysis. This involves pooling of
-#' the biological replicate BAM files, shuffling the reads splitting into
-#' pseudoreplicates.
+#' biological replicate BAM files, shuffling reads, splitting into
+#' pseudoreplicates and calling peaks on the pseudoreplicates.
 #'
 #' @inheritParams conservative_idr
 #' @inheritDotParams MACSr::callpeak -tfile -cfile -outdir -name -format -log

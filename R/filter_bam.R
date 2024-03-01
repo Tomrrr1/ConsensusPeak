@@ -1,11 +1,10 @@
 #' Filter BAM file to exclude the second mate in the read pair
 #'
-#' For Tn5-based methods like CUT&Tag and TIPseq, we recommend filtering
-#' paired-end BAM files to exclude the second mate in the read pair.
-#' If the BAM file does not have and index please run
+#' \code{filter_bam()} filters a paired-end BAM file to exclude the second
+#' mate in the read pair. The result is a single-ended BAM file.
 #'
-#' @param bam_file Path to a paired-end BAM file
-#' @param out_dir Path to where the output filtered BAM file will be written.
+#' @param bam_file Path to a paired-end BAM file.
+#' @param out_dir Path to where the filtered BAM file will be written.
 
 filter_bam <- function(bam_file,
                        out_dir) {
