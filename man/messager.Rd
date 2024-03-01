@@ -4,13 +4,10 @@
 \alias{messager}
 \title{Print messages}
 \usage{
-messager(..., v = TRUE, parallel = FALSE)
+messager(..., v = TRUE)
 }
 \arguments{
 \item{v}{Whether to print messages or not.}
-
-\item{parallel}{Whether to enable message print when wrapped
-in parallelised functions.}
 }
 \description{
 Conditionally print messages.

@@ -4,7 +4,7 @@ check_dotnet_version <- function() {
       check <- system("dotnet --info", intern = TRUE)
       version_line <- grep("^\\s*Version:\\s*\\d\\..*$", check, value = TRUE)[1]
       major_version <- gsub("^\\s*Version:\\s*", "", version_line)
-      if (as.numeric(gsub("^(\\d+)\\..*$", "\\1", major_version)) != 6) {
+      if (as.numeric(gsub("^(\\d+)\\..*$", "\\1", major_version)) < 6) {
         stopper("")
       }
       messager(

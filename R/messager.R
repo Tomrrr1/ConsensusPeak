@@ -6,16 +6,12 @@
 #'  must first be stored to a variable before passing to \link[base]{message}.
 #'
 #' @param v Whether to print messages or not.
-#' @param parallel Whether to enable message print when wrapped
-#' in parallelised functions.
 #'
 #' @return NULL
 #' @keywords internal
-messager <- function(..., v = TRUE, parallel = FALSE) {
-  if(parallel){
-    if(v) try({message_parallel(...)})
-  } else {
+messager <- function(..., v = TRUE) {
+  if(v){
     msg <- paste(...)
-    if (v) try({message(msg)})
+    try({message(msg)})
   }
 }

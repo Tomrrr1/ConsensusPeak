@@ -32,10 +32,10 @@ jobs:
           cont: ~
           rspm: ~
     steps:
-    - name: Install zlib
-      if: ${{ matrix.config.os == 'macOS-latest' }}
-      run: |
-        brew install zlib
+    - name: Setup .NET # Install dotnet v6.0.x to run mspc
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'
     - uses: neurogenomics/rworkflows@master
       with:
         run_bioccheck: ${{ false }}
