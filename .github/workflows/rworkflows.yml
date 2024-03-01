@@ -32,6 +32,10 @@ jobs:
           cont: ~
           rspm: ~
     steps:
+    - name: Install zlib
+      if: ${{ matrix.config.os == 'macOS-latest' }}
+      run: |
+        brew install zlib
     - uses: neurogenomics/rworkflows@master
       with:
         run_bioccheck: ${{ false }}
