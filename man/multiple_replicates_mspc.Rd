@@ -35,7 +35,7 @@ paired-end.}
 a subdirectory containing the output files will be created.}
 
 \item{subdir_name}{Character specifying the name of the subdirectory that the
-output files will be written to.}
+output files will be placed.}
 
 \item{replicateType}{Character string. This argument defines
 the replicate type. Possible values of the argument : 
@@ -146,7 +146,9 @@ A list containing a summary of the MSPC along with the path to the
 output files.
 }
 \description{
-\code{multiple_replicates_mspc()} is a wrapper of the MSPC function.
+\code{multiple_replicates_mspc()} runs multiple sample peak calling from the
+rmspc package. The function handles an arbitrary number of biological
+replicates.
 }
 \examples{
 \dontrun{

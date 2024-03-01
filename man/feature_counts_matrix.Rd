@@ -2,17 +2,16 @@
 % Please edit documentation in R/feature_counts_matrix.R
 \name{feature_counts_matrix}
 \alias{feature_counts_matrix}
-\title{Generate a featureCounts matrix for a set of peaks}
+\title{Generate a featureCounts matrix for a peak set}
 \usage{
-feature_counts_matrix(peak_file, treat_files)
+feature_counts_matrix(peak_file, bam_files)
 }
 \arguments{
 \item{peak_file}{Path to the peak file.}
 
-\item{treat_files}{Character vector of paths to the BAM files that the peak
-file is derived from.}
+\item{bam_files}{Path to the BAM file(s) that the peak file was derived from.}
 }
 \description{
 \code{feature_counts_matrix()} computes the number of reads from a BAM file
-that fall within the ranges of a peak within a set.
+that fall within each peak of your peak set.
 }

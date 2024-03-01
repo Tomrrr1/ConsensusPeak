@@ -7,8 +7,8 @@
 multiple_replicates_chipr(
   treat_files,
   control_files = NULL,
-  is_paired = FALSE,
-  out_dir = tempdir(),
+  is_paired,
+  out_dir,
   subdir_name = "chipr_analysis",
   minentries = 2,
   rankmethod = "pvalue",
@@ -34,7 +34,7 @@ paired-end.}
 a subdirectory containing the output files will be created.}
 
 \item{subdir_name}{Character specifying the name of the subdirectory that the
-output files will be written to.}
+output files will be placed.}
 
 \item{minentries}{The minimum number of intersections a given peak must
 satisfy.}

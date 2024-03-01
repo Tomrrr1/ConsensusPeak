@@ -10,7 +10,7 @@ test_that("Filtered BAM file is created in the desired location", {
                       package = "ConsensusPeak")
 
   result <- feature_counts_matrix(peak_file = peak,
-                                  treat_files = c(treat_1, treat_2)
+                                  bam_files = c(treat_1, treat_2)
                                   )
 
   # Check if the feature counts matrix is created
