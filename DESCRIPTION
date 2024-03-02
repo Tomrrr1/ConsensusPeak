@@ -1,13 +1,13 @@
 Package: ConsensusPeak
 Title: Call consensus peaks from multiple biological replicates
-Version: 0.0.0.9100
+Version: 0.0.0.9000
 Authors@R: 
   person(given = "Thomas", family = "Roberts", 
 	email = "tomroberts.work15@gmail.com", 
 	role = c("aut", "cre"),
 	comment = c(ORCID = "0009-0006-6244-8670"))
 Description: Generate consensus peak sets from multiple biological replicates. 
-  Methods for consensus thresholding include IDR, MSPC and ChIP-R.
+  Methods for thresholding include IDR, MSPC and ChIP-R.
 URL: https://github.com/neurogenomics/ConsensusPeak
 License: GPL (>= 3)
 Encoding: UTF-8
@@ -38,3 +38,4 @@ Config/testthat/edition: 3
 RoxygenNote: 7.3.1
 BugReports: https://github.com/neurogenomics/ConsensusPeak/issues
 VignetteBuilder: knitr
+biocViews: Epigenetics, PeakDetection, EpigeneticsWorkflow, ChIPSeq
