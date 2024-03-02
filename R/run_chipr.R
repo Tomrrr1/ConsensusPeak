@@ -1,4 +1,4 @@
-#' Call consensus peaks using ChIP-R
+#' Multiple replicates peak calling with ChIP-R
 #'
 #' \code{run_chipr()} is a wrapper for the Python package ChIP-R. ChIP-R
 #' assesses the reproducibility of peaks across multiple biological replicates

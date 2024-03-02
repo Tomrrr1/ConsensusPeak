@@ -1,5 +1,4 @@
-#' Call peaks with MACSr and generate a consensus set with Multiple Sample Peak
-#' Calling (MSPC)
+#' Multiple replicate peak calling with MSPC
 #'
 #' \code{multiple_replicates_mspc()} runs multiple sample peak calling from the
 #' rmspc package. The function handles an arbitrary number of biological
