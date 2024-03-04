@@ -21,7 +21,7 @@ jobs:
       fail-fast: ${{ false }}
       matrix:
         config:
-        - os: ubuntu-latest # not run on Windows because MACSr is not supported.
+        - os: ubuntu-latest
           bioc: devel
           r: auto
           cont: ghcr.io/bioconductor/bioconductor_docker:devel

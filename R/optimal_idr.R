@@ -12,7 +12,7 @@
 #'
 #' @returns Summary of the IDR output
 #'
-#' @keywords internal
+#' @export
 optimal_idr <- function(treat_files,
                         control_files = NULL,
                         is_paired,

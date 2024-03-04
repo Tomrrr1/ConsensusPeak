@@ -12,7 +12,7 @@
 #' @returns A list containing a summary of the IDR analysis along with the path
 #' to the output files.
 #'
-#' @keywords internal
+#' @export
 
 conservative_idr <- function(treat_files,
                              control_files = NULL,

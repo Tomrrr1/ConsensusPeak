@@ -117,4 +117,3 @@ to the output files.
 \code{conservative_idr()} performs the conservative IDR analysis as defined
 by ENCODE. The function writes a filtered set of peaks to a desired location.
 }
-\keyword{internal}
