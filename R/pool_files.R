@@ -7,17 +7,19 @@
 #'
 #' @param named_list A named list containing paths to BAM files.
 #' This list is outputted from the `prepare_named_list` function.
+#'
 #' The list includes:
-#' \itemize{
-#'   \item{"treatment_file_1"}{Path to the first treatment replicate.}
-#'   \item{"treatment_file_2"}{Path to the second treatment replicate.}
-#'   \item{"control_file_1"}{Optional. Path to the first control replicate.}
-#'   \item{"control_file_2"}{Optional. Path to the second control replicate.}
-#' }
+#' - "treatment_file_1" Path to the first treatment replicate.
+#' - "treatment_file_2" Path to the second treatment replicate.
+#' - "control_file_1" Optional. Path to the first control replicate.
+#' - "control_file_2" Optional. Path to the second control replicate.
+#'
 #' @param out_dir The directory where the merged BAM files will be saved.
 #' @return Vector containing file paths to the output BAM files
+#'
+#' @keywords internal
 
-pool_files <- function(named_list,
+pool_files <- function(named_list, # formatted by prepare_named_list
                        out_dir) {
   rep1 <- named_list[["treatment_file_1"]]
   rep2 <- named_list[["treatment_file_2"]]

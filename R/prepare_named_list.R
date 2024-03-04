@@ -11,6 +11,8 @@
 #' "treatment_file_2", "control_file_1", and "control_file_2", corresponding
 #' to the provided file paths. The list is filtered to exclude any that are
 #' NULL.
+#'
+#' @keywords internal
 
 prepare_named_list <- function(treat_files,
                                control_files = NULL) {

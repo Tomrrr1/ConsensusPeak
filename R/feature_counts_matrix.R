@@ -22,7 +22,7 @@ feature_counts_matrix <- function(peak_file,
   # Read the peak file and subset desired columns
   peak <-
     utils::read.table(peak_file, header = FALSE)
-  peak_df <- peak[, c(4, 1, 2, 3, 6)]
+  peak_df <- peak[, c(4, 1, 2, 3, 6)] # name, chr, start, end, strand
 
   # Set column names for SAF format
   colnames(peak_df) <- c("GeneID", "Chr", "Start", "End", "Strand")

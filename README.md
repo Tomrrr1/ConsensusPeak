@@ -13,9 +13,60 @@ Authors: <i>Thomas Roberts</i>
 </h4>
 2024-02-04
 
-## R Markdown
+## Introduction
 
-Package for calling consensus peaks from multiple biological replicates. 
+`ConsensusPeak` is an R Package for calling consensus peaks from multiple 
+biological replicates. We implement several methods for thresholding, including 
+IDR conservative, IDR optimal, MSPC and ChIP-R.
 
-The package is unsupported on Windows because of its use of MACSr, a 
-bioconductor package that is itself unsupported.
+## Installation
+
+```R
+if(!require("remotes")) install.packages("remotes")
+remotes::install_github("neurogenomics/ConsensusPeak")
+```
+
+## Usage
+
+Load example data:
+
+```R
+rep_treat_1 <- system.file("extdata",
+                           "r1_creb_chr22.bam",
+                           package = "ConsensusPeak")
+rep_treat_2 <- system.file("extdata",
+                           "r2_creb_chr22.bam",
+                           package = "ConsensusPeak")
+```
+
+Run MACS3 peak calling and IDR thresholding with a single command:
+
+```R
+result <- conservative_idr(
+  treat_files = c(rep_treat_1, rep_treat_2),
+  out_dir = ".", # Directory to write the output files
+  idr_stringent = TRUE, # Threshold at 0.01 or 0.05
+  is_paired = FALSE, # Is the data paired-end?
+  nomodel = TRUE # MACS3 setting
+  )
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+   
