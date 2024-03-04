@@ -37,11 +37,11 @@ jobs:
       with:
         dotnet-version: '6.0.x'
     - name: Install latest version of conda
-        uses: conda-incubator/setup-miniconda@v2
-        with:
-          auto-update-conda: true
-          miniconda-version: "latest"
-          auto-activate-base: false
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        auto-update-conda: true
+        miniconda-version: "latest"
+        auto-activate-base: false
     - uses: neurogenomics/rworkflows@master
       with:
         run_bioccheck: ${{ true }}
