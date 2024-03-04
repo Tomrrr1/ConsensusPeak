@@ -11,13 +11,14 @@ prepare_and_call(treat_files, control_files = NULL, is_paired, out_dir, ...)
 files.}
 
 \item{control_files}{Character vector containing paths to the control BAM
-files.}
+files. The default is NULL}
 
-\item{is_paired}{Logical, specifying whether or not the BAM file is
-paired-end.}
+\item{is_paired}{Logical, specifying whether or not the BAM files are
+paired-end. The default is `FALSE`.}
 
-\item{out_dir}{Character specifying the name of the output directory in which
-a subdirectory containing the output files will be created.}
+\item{out_dir}{Character specifying the path at which the results directory
+will be created. By default, the results directories are created in
+tempdir().}
 }
 \description{
 \code{prepare_and_call} prepares the BAM files into a list and then passes

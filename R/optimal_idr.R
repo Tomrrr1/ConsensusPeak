@@ -4,7 +4,7 @@
 #' biological replicate BAM files, shuffling reads, splitting into
 #' pseudoreplicates and calling peaks on the pseudoreplicates.
 #'
-#' @inheritParams conservative_idr
+#' @inheritParams idr_analysis
 #' @inheritDotParams MACSr::callpeak -tfile -cfile -outdir -name -format -log
 #' -tempdir
 #'
@@ -14,7 +14,8 @@
 optimal_idr <- function(treat_files,
                         control_files = NULL,
                         is_paired,
-                        idr_stringent,
+                        idr_stringent = TRUE,
+                        keep_original = FALSE,
                         out_dir,
                         subdir_name = "optimal_idr_analysis",
                         ...){
@@ -64,6 +65,7 @@ optimal_idr <- function(treat_files,
   result_idr <- calculate_idr(peak_file_1 = result_list[[1]],
                               peak_file_2 = result_list[[2]],
                               stringent = idr_stringent,
+                              keep_original = keep_original,
                               out_dir = final_out_dir)
 
   messager("All output files are stored at ", final_out_dir)

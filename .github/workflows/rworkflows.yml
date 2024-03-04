@@ -44,7 +44,7 @@ jobs:
         auto-activate-base: false
     - uses: neurogenomics/rworkflows@master
       with:
-        run_bioccheck: ${{ false }}
+        run_bioccheck: ${{ true }}
         run_rcmdcheck: ${{ true }}
         as_cran: ${{ true }}
         run_vignettes: ${{ true }}

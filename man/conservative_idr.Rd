@@ -9,6 +9,7 @@ conservative_idr(
   control_files = NULL,
   is_paired,
   idr_stringent = TRUE,
+  keep_original = FALSE,
   out_dir,
   subdir_name = "conservative_idr_analysis",
   ...
@@ -19,19 +20,22 @@ conservative_idr(
 files.}
 
 \item{control_files}{Character vector containing paths to the control BAM
-files.}
+files. The default is NULL}
 
-\item{is_paired}{Logical, specifying whether or not the BAM file is
-paired-end.}
+\item{is_paired}{Logical, specifying whether or not the BAM files are
+paired-end. The default is `FALSE`.}
 
-\item{idr_stringent}{Logical. If set to TRUE then the threshold used by IDR
-is 0.01. If set to FALSE then the threshold is 0.05. The default is TRUE.}
+\item{idr_stringent}{Logical, relating to the IDR threshold. If set to `TRUE`
+then the threshold used by IDR is 0.01. If set to `FALSE` then the threshold
+is 0.05. The default is `TRUE`.}
 
-\item{out_dir}{Character specifying the name of the output directory in which
-a subdirectory containing the output files will be created.}
+\item{keep_original}{Should the original peaks from one of the replicates
+be written to the output file or should the output peaks be the sum of the
+ranges of the two replicates peaks. The default is `FALSE`.}
 
-\item{subdir_name}{Character specifying the name of the subdirectory that the
-output files will be placed.}
+\item{out_dir}{Character specifying the path at which the results directory
+will be created. By default, the results directories are created in
+tempdir().}
 
 \item{...}{
   Arguments passed on to \code{\link[MACSr:callpeak]{MACSr::callpeak}}

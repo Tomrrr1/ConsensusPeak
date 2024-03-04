@@ -4,7 +4,13 @@
 \alias{calculate_idr}
 \title{Perform IDR thresholding}
 \usage{
-calculate_idr(peak_file_1, peak_file_2, stringent = TRUE, out_dir)
+calculate_idr(
+  peak_file_1,
+  peak_file_2,
+  stringent = TRUE,
+  keep_original = FALSE,
+  out_dir
+)
 }
 \arguments{
 \item{peak_file_1}{Path to the .narrowPeak file of biological replicate 1.}
@@ -12,6 +18,10 @@ calculate_idr(peak_file_1, peak_file_2, stringent = TRUE, out_dir)
 \item{peak_file_2}{Path to the .narrowPeak file of biological replicate 2.}
 
 \item{stringent}{if `TRUE` threshold at 0.01. If `FALSE`, threshold at 0.05.}
+
+\item{keep_original}{Should the original peaks from one of the replicates
+be written to the output file or should the output peaks be the sum of the
+ranges of the two replicates peaks. The default is `FALSE`.}
 
 \item{out_dir}{Path to the directory where the high-confidence peaks are
 written.}

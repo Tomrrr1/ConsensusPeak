@@ -25,16 +25,14 @@ multiple_replicates_mspc(
 files.}
 
 \item{control_files}{Character vector containing paths to the control BAM
-files.}
+files. The default is NULL}
 
-\item{is_paired}{Logical, specifying whether or not the BAM file is
-paired-end.}
+\item{is_paired}{Logical, specifying whether or not the BAM files are
+paired-end. The default is `FALSE`.}
 
-\item{out_dir}{Character specifying the name of the output directory in which
-a subdirectory containing the output files will be created.}
-
-\item{subdir_name}{Character specifying the name of the subdirectory that the
-output files will be placed.}
+\item{out_dir}{Character specifying the path at which the results directory
+will be created. By default, the results directories are created in
+tempdir().}
 
 \item{replicateType}{Character string. This argument defines
 the replicate type. Possible values of the argument : 

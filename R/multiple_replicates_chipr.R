@@ -3,7 +3,7 @@
 #' \code{multiple_replicates_chipr()} is a wrapper of the Python package ChIP-R.
 #' ChIP-R handles an arbitrary number of replicates.
 #'
-#' @inheritParams conservative_idr
+#' @inheritParams idr_analysis
 #' @inheritParams run_chipr
 #' @inheritDotParams MACSr::callpeak -tfile -cfile -outdir -name -format -log
 #' -tempdir

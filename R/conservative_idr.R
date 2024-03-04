@@ -3,18 +3,7 @@
 #' \code{conservative_idr()} performs the conservative IDR analysis as defined
 #' by ENCODE. The function writes a filtered set of peaks to a desired location.
 #'
-#' @param treat_files Character vector containing paths to the treatment BAM
-#' files.
-#' @param control_files Character vector containing paths to the control BAM
-#' files.
-#' @param is_paired Logical, specifying whether or not the BAM file is
-#' paired-end.
-#' @param idr_stringent Logical. If set to TRUE then the threshold used by IDR
-#' is 0.01. If set to FALSE then the threshold is 0.05. The default is TRUE.
-#' @param out_dir Character specifying the name of the output directory in which
-#' a subdirectory containing the output files will be created.
-#' @param subdir_name Character specifying the name of the subdirectory that the
-#' output files will be placed.
+#' @inheritParams idr_analysis
 #' @inheritDotParams MACSr::callpeak -tfile -cfile -outdir -name -format -log
 #' -tempdir
 #'
@@ -27,6 +16,7 @@ conservative_idr <- function(treat_files,
                              control_files = NULL,
                              is_paired,
                              idr_stringent = TRUE,
+                             keep_original = FALSE,
                              out_dir,
                              subdir_name = "conservative_idr_analysis",
                              ...) {
@@ -43,6 +33,7 @@ conservative_idr <- function(treat_files,
   result_idr <- calculate_idr(peak_file_1 = peak_list[[1]],
                               peak_file_2 = peak_list[[2]],
                               stringent = idr_stringent,
+                              keep_original = keep_original,
                               out_dir = final_out_dir)
 
   messager("All output files are stored at ", final_out_dir)

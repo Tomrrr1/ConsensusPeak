@@ -10,10 +10,13 @@
 #' @param type String denoting the analysis type. Either "conservative",
 #' "optimal" or "all". The default is "all"
 #' @param is_paired Logical, specifying whether or not the BAM files are
-#' paired-end. The default is FALSE.
-#' @param idr_stringent Logical, relating to the IDR threshold. If set to TRUE
-#' then the threshold used by IDR is 0.01. If set to FALSE then the threshold
-#' is 0.05. The default is TRUE.
+#' paired-end. The default is `FALSE`.
+#' @param keep_original Should the original peaks from one of the replicates
+#' be written to the output file or should the output peaks be the sum of the
+#' ranges of the two replicates peaks. The default is `FALSE`.
+#' @param idr_stringent Logical, relating to the IDR threshold. If set to `TRUE`
+#' then the threshold used by IDR is 0.01. If set to `FALSE` then the threshold
+#' is 0.05. The default is `TRUE`.
 #' @param out_dir Character specifying the path at which the results directory
 #' will be created. By default, the results directories are created in
 #' tempdir().
@@ -40,6 +43,7 @@ idr_analysis <- function(treat_files,
                          type = "all",
                          is_paired = FALSE,
                          idr_stringent = TRUE,
+                         keep_original = FALSE,
                          out_dir = tempdir(),
                          ...){
 
@@ -59,6 +63,7 @@ idr_analysis <- function(treat_files,
                        control_files = control_files,
                        is_paired = is_paired,
                        idr_stringent = idr_stringent,
+                       keep_original = keep_original,
                        out_dir = out_dir,
                        subdir_name = "conservative_idr_analysis",
                        ...)
@@ -72,6 +77,7 @@ idr_analysis <- function(treat_files,
                   control_files = control_files,
                   is_paired = is_paired,
                   idr_stringent = idr_stringent,
+                  keep_original = keep_original,
                   out_dir = out_dir,
                   subdir_name = "optimal_idr_analysis",
                   ...)

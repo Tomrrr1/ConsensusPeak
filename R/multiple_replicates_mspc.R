@@ -4,7 +4,7 @@
 #' rmspc package. The function handles an arbitrary number of biological
 #' replicates.
 #'
-#' @inheritParams conservative_idr
+#' @inheritParams idr_analysis
 #' @inheritParams rmspc::mspc
 #' @inheritDotParams MACSr::callpeak -tfile -cfile -outdir -name -format -log
 #' -tempdir

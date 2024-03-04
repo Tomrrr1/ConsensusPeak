@@ -13,6 +13,7 @@ test_that("IDR peak file is created in the desired location", {
     out_dir = temp_out_dir,
     idr_stringent = TRUE,
     is_paired = FALSE,
+    keep_original = FALSE,
     nomodel = TRUE
   )
 

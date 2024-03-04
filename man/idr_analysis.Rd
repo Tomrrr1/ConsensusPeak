@@ -10,6 +10,7 @@ idr_analysis(
   type = "all",
   is_paired = FALSE,
   idr_stringent = TRUE,
+  keep_original = FALSE,
   out_dir = tempdir(),
   ...
 )
@@ -25,11 +26,15 @@ files. The default is NULL}
 "optimal" or "all". The default is "all"}
 
 \item{is_paired}{Logical, specifying whether or not the BAM files are
-paired-end. The default is FALSE.}
+paired-end. The default is `FALSE`.}
 
-\item{idr_stringent}{Logical, relating to the IDR threshold. If set to TRUE
-then the threshold used by IDR is 0.01. If set to FALSE then the threshold
-is 0.05. The default is TRUE.}
+\item{idr_stringent}{Logical, relating to the IDR threshold. If set to `TRUE`
+then the threshold used by IDR is 0.01. If set to `FALSE` then the threshold
+is 0.05. The default is `TRUE`.}
+
+\item{keep_original}{Should the original peaks from one of the replicates
+be written to the output file or should the output peaks be the sum of the
+ranges of the two replicates peaks. The default is `FALSE`.}
 
 \item{out_dir}{Character specifying the path at which the results directory
 will be created. By default, the results directories are created in
