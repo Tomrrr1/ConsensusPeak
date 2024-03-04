@@ -34,6 +34,9 @@ paired-end. The default is `FALSE`.}
 will be created. By default, the results directories are created in
 tempdir().}
 
+\item{subdir_name}{Character specifying the name of the subdirectory that the
+output files will be placed.}
+
 \item{minentries}{The minimum number of intersections a given peak must
 satisfy.}
 

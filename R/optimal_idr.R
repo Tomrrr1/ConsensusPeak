@@ -5,6 +5,8 @@
 #' pseudoreplicates and calling peaks on the pseudoreplicates.
 #'
 #' @inheritParams idr_analysis
+#' @param subdir_name Character specifying the name of the subdirectory that the
+#' output files will be placed.
 #' @inheritDotParams MACSr::callpeak -tfile -cfile -outdir -name -format -log
 #' -tempdir
 #'

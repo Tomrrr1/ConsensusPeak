@@ -4,6 +4,8 @@
 #' ChIP-R handles an arbitrary number of replicates.
 #'
 #' @inheritParams idr_analysis
+#' @param subdir_name Character specifying the name of the subdirectory that the
+#' output files will be placed.
 #' @inheritParams run_chipr
 #' @inheritDotParams MACSr::callpeak -tfile -cfile -outdir -name -format -log
 #' -tempdir

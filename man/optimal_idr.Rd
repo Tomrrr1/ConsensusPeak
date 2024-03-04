@@ -37,6 +37,9 @@ ranges of the two replicates peaks. The default is `FALSE`.}
 will be created. By default, the results directories are created in
 tempdir().}
 
+\item{subdir_name}{Character specifying the name of the subdirectory that the
+output files will be placed.}
+
 \item{...}{
   Arguments passed on to \code{\link[MACSr:callpeak]{MACSr::callpeak}}
   \describe{

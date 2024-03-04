@@ -12,6 +12,7 @@ test_that("Optimal and conservative IDR peak files are generated", {
                          control_files = NULL,
                          type = "all",
                          is_paired = FALSE,
+                         keep_original = FALSE,
                          out_dir = temp_out_dir,
                          nomodel = TRUE
                          )
