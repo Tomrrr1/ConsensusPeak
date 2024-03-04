@@ -2,7 +2,7 @@
 % Please edit documentation in R/run_chipr.R
 \name{run_chipr}
 \alias{run_chipr}
-\title{Call consensus peaks using ChIP-R}
+\title{Multiple replicates peak calling with ChIP-R}
 \usage{
 run_chipr(
   peak_files,

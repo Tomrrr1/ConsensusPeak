@@ -9,13 +9,12 @@ pool_files(named_list, out_dir)
 \arguments{
 \item{named_list}{A named list containing paths to BAM files.
 This list is outputted from the `prepare_named_list` function.
+
 The list includes:
-\itemize{
-  \item{"treatment_file_1"}{Path to the first treatment replicate.}
-  \item{"treatment_file_2"}{Path to the second treatment replicate.}
-  \item{"control_file_1"}{Optional. Path to the first control replicate.}
-  \item{"control_file_2"}{Optional. Path to the second control replicate.}
-}}
+- "treatment_file_1" Path to the first treatment replicate.
+- "treatment_file_2" Path to the second treatment replicate.
+- "control_file_1" Optional. Path to the first control replicate.
+- "control_file_2" Optional. Path to the second control replicate.}
 
 \item{out_dir}{The directory where the merged BAM files will be saved.}
 }
@@ -28,3 +27,4 @@ designed to work with the output from the `prepare_named_list` function,
 which provides a named list of BAM file paths. If control files are provided,
 they are also merged into a separate control BAM file.
 }
+\keyword{internal}

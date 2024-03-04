@@ -42,13 +42,14 @@ rep_treat_2 <- system.file("extdata",
 Run MACS3 peak calling and IDR thresholding with a single command:
 
 ```R
-result <- conservative_idr(
-  treat_files = c(rep_treat_1, rep_treat_2),
-  out_dir = ".", # Directory to write the output files
-  idr_stringent = TRUE, # Threshold at 0.01 or 0.05
-  is_paired = FALSE, # Is the data paired-end?
-  nomodel = TRUE # MACS3 setting
-  )
+result <- idr_analysis(treat_files = c(rep_treat_1, rep_treat_2),
+                       control_files = NULL,
+                       type = "conservative",
+                       is_paired = FALSE, # Is the data paired-end?
+                       idr_stringent = TRUE # Threshold at 0.01 or 0.05
+                       out_dir = ".", # Directory to write the output files
+                       nomodel = TRUE # MACS3 setting
+                       )
 ```
 
 

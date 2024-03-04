@@ -23,3 +23,4 @@ This function checks the validity of user-specified file paths for replicates
 and controls and constructs a named list. The function ensures that the file
 paths are valid and normalises them.
 }
+\keyword{internal}

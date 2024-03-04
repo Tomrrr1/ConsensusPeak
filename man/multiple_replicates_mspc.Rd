@@ -2,8 +2,7 @@
 % Please edit documentation in R/multiple_replicates_mspc.R
 \name{multiple_replicates_mspc}
 \alias{multiple_replicates_mspc}
-\title{Call peaks with MACSr and generate a consensus set with Multiple Sample Peak
-Calling (MSPC)}
+\title{Multiple replicate peak calling with MSPC}
 \usage{
 multiple_replicates_mspc(
   treat_files,

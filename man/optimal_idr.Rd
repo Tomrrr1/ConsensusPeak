@@ -110,3 +110,4 @@ Summary of the IDR output
 biological replicate BAM files, shuffling reads, splitting into
 pseudoreplicates and calling peaks on the pseudoreplicates.
 }
+\keyword{internal}
