@@ -2,7 +2,7 @@
 % Please edit documentation in R/multiple_replicates_chipr.R
 \name{multiple_replicates_chipr}
 \alias{multiple_replicates_chipr}
-\title{Call peaks with MACSr and generate consensus set with ChIP-R}
+\title{Multiple replicate peak calling with ChIP-R}
 \usage{
 multiple_replicates_chipr(
   treat_files,
@@ -34,8 +34,8 @@ paired-end. The default is `FALSE`.}
 will be created. By default, the results directories are created in
 tempdir().}
 
-\item{subdir_name}{Character specifying the name of the subdirectory that the
-output files will be placed.}
+\item{subdir_name}{The name of the subdirectory that the output files will be
+placed.}
 
 \item{minentries}{The minimum number of intersections a given peak must
 satisfy.}
@@ -136,7 +136,8 @@ output files.
 }
 \description{
 \code{multiple_replicates_chipr()} is a wrapper of the Python package ChIP-R.
-ChIP-R handles an arbitrary number of replicates.
+The function calls peaks with MACSr and then filters these peaks to generate
+a consensus set using the Python package ChIP-R.
 }
 \examples{
 \dontrun{
@@ -145,8 +146,7 @@ input2 <- testthat::test_path("testdata", "r2_test_creb.bam")
 input3 <- testthat::test_path("testdata", "r3_test_creb.bam")
 
 multiple_replicates_chipr(treat_files = c(input1, input2, input3),
-                          out_dir = tempdir(),
-                          ...
+                          out_dir = tempdir()
                           )
                           }
 

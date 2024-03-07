@@ -1,6 +1,6 @@
 Package: ConsensusPeak
 Title: Call consensus peaks from multiple biological replicates
-Version: 0.0.0.9100
+Version: 0.0.0.9000
 Authors@R: 
   person(given = "Thomas", family = "Roberts", 
 	email = "tomroberts.work15@gmail.com", 

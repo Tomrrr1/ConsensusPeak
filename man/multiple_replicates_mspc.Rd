@@ -34,8 +34,8 @@ paired-end. The default is `FALSE`.}
 will be created. By default, the results directories are created in
 tempdir().}
 
-\item{subdir_name}{Character specifying the name of the subdirectory that the
-output files will be placed.}
+\item{subdir_name}{The name of the subdirectory that the output files will be
+placed.}
 
 \item{replicateType}{Character string. This argument defines
 the replicate type. Possible values of the argument : 
@@ -147,8 +147,8 @@ output files.
 }
 \description{
 \code{multiple_replicates_mspc()} runs multiple sample peak calling from the
-rmspc package. The function handles an arbitrary number of biological
-replicates.
+rmspc package. The function calls peaks with MACSr and then filters these
+peaks to generate a consensus set using the mspc function from rmspc.
 }
 \examples{
 \dontrun{
@@ -163,8 +163,7 @@ multiple_replicates_mspc(treat_files = c(input1, input2, input3),
                          replicateType = "Biological",
                          stringencyThreshold = 1e-8,
                          weakThreshold = 1e-4,
-                         c = 3,
-                         ...
+                         c = 3
                          )
                          }
 

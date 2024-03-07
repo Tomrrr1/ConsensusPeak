@@ -25,27 +25,6 @@ challenge in terms of ease-of-use. To address this issue, we
 introduce *ConsensusPeak*, an R package that aggregates several consensus peak 
 calling metrics within a cohesive and straightforward interface.
 
-The user simply has to supply BAM files. Peak calling is performed internally 
-using MACS3 and the output is fed directly into the thresholding methods.
-What other thresholding methods could we try? Or what other features could we 
-include?
-
-We could (1) merge bam (2) call merged peaks (3) call peaks on individual
-replicates (4) consensus peak is peak found in all or n number?
-
-- Irreproducible Discovery Rate (IDR) (n = 2)
-  - Optimal
-  - Conservative
-- Multiple Sample Peak Calling (MSPC)
-- Overlapping peak calls using findOverlapsOfPeaks (n < 5)
-- Majority-vote. Peaks in more than half of the replicates. Lets use something 
-- other than findoverlapsofpeaks as we are limited to 4 replicates. We can pick 
-a reference and then calculate overlap from the perspective of this reference.
-- CHiP-R. 
-
-Run all methods and then compare optimal peaks 
-using EpiCompare.
-
 <!-- \begin{itemize} -->
 <!--   \item Irreproducible Discovery Rate (IDR) (n = 2) -->
 <!--   \begin{enumerate} -->
@@ -64,18 +43,66 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
+# ConsensusPeak can currently only be installed from GitHub
+#if(!require("remotes")) install.packages("remotes")
+#remotes::install_github("neurogenomics/ConsensusPeak")
+
 library(ConsensusPeak)
 ```
 
-```{r eval=FALSE}
-# code here
-input1 <- system.file("extdata", "r1_test_creb.bam", package = "ConsensusPeak")
-input2 <- system.file("extdata", "r2_test_creb.bam", package = "ConsensusPeak")
-
-
-
-
+The package is distributed with small example data sets. These can be loaded 
+with the following commands:
+```{r eval=TRUE}
+input1 <- system.file("extdata", "r1_creb_chr22.bam", package = "ConsensusPeak")
+input2 <- system.file("extdata", "r2_creb_chr22.bam", package = "ConsensusPeak")
+input3 <- system.file("extdata", "r3_creb_chr22.bam", package = "ConsensusPeak")
 ```
+
+A popular way to generate consensus peaks is via the Irreproducible Discovery 
+Rate (IDR). This method is a measure of peak rank consistency between 
+two replciates, and is used in the ENCODE project. Here, we implement two 
+variants of IDR: conservative and optimal. Despite its popularity, IDR analysis 
+can only be performed with two replicates.
+```{r eval=TRUE}
+
+idr_analysis(treat_files = c(input1, input2), # BAM files
+             control_files = NULL,
+             type = "all", # all runs both the conservative and optimal methods. 
+             is_paired = FALSE,
+             out_dir = ".",
+             nomodel = TRUE
+             )
+```
+
+We have implemented two methods that can handle more than two replicates. These 
+are MSPC and ChIP-R. Note that MSPC requires .NET 6.0 or higher to be installed 
+on your system.
+
+```{r eval=TRUE}
+
+multiple_replicates_mspc(treat_files = c(input1, input2, input3),
+                         out_dir = ".",
+                         subdir_name = "mspc_analysis",
+                         is_paired = FALSE,
+                         replicateType = "Biological",
+                         stringencyThreshold = 1e-8,
+                         weakThreshold = 1e-4,
+                         c = 3,
+                         nomodel = TRUE
+                         )
+```
+
+```{r eval=TRUE}
+
+multiple_replicates_chipr(treat_files = c(input1, input2, input3),
+                          is_paired = FALSE,
+                          out_dir = ".",
+                          nomodel = TRUE
+                          )
+```
+
+
+
 
 
 

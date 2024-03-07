@@ -114,8 +114,9 @@ A list containing a summary of the IDR analysis along with the path
 to the output files.
 }
 \description{
-\code{idr_analysis()} calls consensus peaks using IDR thresholding. IDR
-analysis can be used to generate a "conservative" or "optimal" set of peaks.
+\code{idr_analysis()} generates consensus peaks using IDR thresholding. The
+functions calls peaks with MACSr and then filters these peaks using IDR. IDR
+can be used to generate a "conservative" or "optimal" set of peaks.
 }
 \examples{
 \dontrun{
@@ -126,6 +127,7 @@ idr_analysis(treat_files = c(input1, input2),
             control_files = NULL,
             type = "all",
             is_paired = FALSE,
+            keep_original = FALSE,
             out_dir = tempdir()
             )
             }

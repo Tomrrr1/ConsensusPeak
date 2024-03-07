@@ -1,11 +1,12 @@
-#' Call peaks with MACSr and generate consensus set with ChIP-R
+#' Multiple replicate peak calling with ChIP-R
 #'
 #' \code{multiple_replicates_chipr()} is a wrapper of the Python package ChIP-R.
-#' ChIP-R handles an arbitrary number of replicates.
+#' The function calls peaks with MACSr and then filters these peaks to generate
+#' a consensus set using the Python package ChIP-R.
 #'
 #' @inheritParams idr_analysis
-#' @param subdir_name Character specifying the name of the subdirectory that the
-#' output files will be placed.
+#' @param subdir_name The name of the subdirectory that the output files will be
+#' placed.
 #' @inheritParams run_chipr
 #' @inheritDotParams MACSr::callpeak -tfile -cfile -outdir -name -format -log
 #' -tempdir
@@ -20,8 +21,7 @@
 #' input3 <- testthat::test_path("testdata", "r3_test_creb.bam")
 #'
 #' multiple_replicates_chipr(treat_files = c(input1, input2, input3),
-#'                           out_dir = tempdir(),
-#'                           ...
+#'                           out_dir = tempdir()
 #'                           )
 #'                           }
 #'

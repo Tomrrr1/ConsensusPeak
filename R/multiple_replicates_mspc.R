@@ -1,12 +1,12 @@
 #' Multiple replicate peak calling with MSPC
 #'
 #' \code{multiple_replicates_mspc()} runs multiple sample peak calling from the
-#' rmspc package. The function handles an arbitrary number of biological
-#' replicates.
+#' rmspc package. The function calls peaks with MACSr and then filters these
+#' peaks to generate a consensus set using the mspc function from rmspc.
 #'
 #' @inheritParams idr_analysis
-#' @param subdir_name Character specifying the name of the subdirectory that the
-#' output files will be placed.
+#' @param subdir_name The name of the subdirectory that the output files will be
+#' placed.
 #' @inheritParams rmspc::mspc
 #' @inheritDotParams MACSr::callpeak -tfile -cfile -outdir -name -format -log
 #' -tempdir
@@ -27,8 +27,7 @@
 #'                          replicateType = "Biological",
 #'                          stringencyThreshold = 1e-8,
 #'                          weakThreshold = 1e-4,
-#'                          c = 3,
-#'                          ...
+#'                          c = 3
 #'                          )
 #'                          }
 #'

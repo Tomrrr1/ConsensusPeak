@@ -1,7 +1,8 @@
 #' Call consensus peaks using IDR
 #'
-#' \code{idr_analysis()} calls consensus peaks using IDR thresholding. IDR
-#' analysis can be used to generate a "conservative" or "optimal" set of peaks.
+#' \code{idr_analysis()} generates consensus peaks using IDR thresholding. The
+#' functions calls peaks with MACSr and then filters these peaks using IDR. IDR
+#' can be used to generate a "conservative" or "optimal" set of peaks.
 #'
 #' @param treat_files Character vector containing paths to the treatment BAM
 #' files.
@@ -35,6 +36,7 @@
 #'             control_files = NULL,
 #'             type = "all",
 #'             is_paired = FALSE,
+#'             keep_original = FALSE,
 #'             out_dir = tempdir()
 #'             )
 #'             }
