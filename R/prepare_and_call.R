@@ -30,7 +30,6 @@ prepare_and_call <- function(treat_files,
         format = ifelse(is_paired, "BAMPE", "BAM"),
         name = paste0("rep", i),
         ...)
-
   }
 
   return(result_list)

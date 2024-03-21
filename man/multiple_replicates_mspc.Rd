@@ -10,6 +10,7 @@ multiple_replicates_mspc(
   is_paired = FALSE,
   out_dir,
   subdir_name = "mspc_analysis",
+  call_peaks = TRUE,
   replicateType,
   stringencyThreshold,
   weakThreshold,
@@ -36,6 +37,10 @@ tempdir().}
 
 \item{subdir_name}{The name of the subdirectory that the output files will be
 placed.}
+
+\item{call_peaks}{Set to TRUE if you want to call peaks (in which case you
+will have supplied BAM files). Set to TRUE if treat_files is a vector of
+paths to narrowPeak or broadPeak files.}
 
 \item{replicateType}{Character string. This argument defines
 the replicate type. Possible values of the argument : 

@@ -28,6 +28,5 @@ process_peak_file <- function(peak_list,
     peak_file_paths[i] <- output_file_path
   }
 
-
   return(peak_file_paths)
 }

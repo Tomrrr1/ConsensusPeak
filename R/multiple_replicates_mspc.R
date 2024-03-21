@@ -7,6 +7,9 @@
 #' @inheritParams idr_analysis
 #' @param subdir_name The name of the subdirectory that the output files will be
 #' placed.
+#' @param call_peaks Set to TRUE if you want to call peaks (in which case you
+#' will have supplied BAM files). Set to TRUE if treat_files is a vector of
+#' paths to narrowPeak or broadPeak files.
 #' @inheritParams rmspc::mspc
 #' @inheritDotParams MACSr::callpeak -tfile -cfile -outdir -name -format -log
 #' -tempdir
@@ -37,6 +40,7 @@ multiple_replicates_mspc <- function(treat_files,
                                      is_paired = FALSE,
                                      out_dir,
                                      subdir_name = "mspc_analysis",
+                                     call_peaks = TRUE,
                                      replicateType,
                                      stringencyThreshold,
                                      weakThreshold,
@@ -50,14 +54,18 @@ multiple_replicates_mspc <- function(treat_files,
   }
 
   final_out_dir <- create_or_use_dir(out_dir, subdir_name)
-  peak_list <-
-    prepare_and_call(
-      treat_files = treat_files,
-      control_files = control_files,
-      is_paired = is_paired,
-      out_dir = final_out_dir,
-      ...
-    ) # outputs a named list of peak files
+  if(call_peaks){
+    peak_list <-
+      prepare_and_call(
+        treat_files = treat_files,
+        control_files = control_files,
+        is_paired = is_paired,
+        out_dir = final_out_dir,
+        ...
+      ) # outputs a named list of peak files
+  } else {
+    peak_list <- as.list(treat_files)
+  }
 
   # mspc requires specific formatting of peak files
   peak_file_paths <- process_peak_file(peak_list = peak_list,

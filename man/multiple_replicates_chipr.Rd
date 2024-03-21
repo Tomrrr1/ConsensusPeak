@@ -10,6 +10,7 @@ multiple_replicates_chipr(
   is_paired = FALSE,
   out_dir,
   subdir_name = "chipr_analysis",
+  call_peaks = TRUE,
   minentries = 2,
   rankmethod = "pvalue",
   duphandling = "average",
@@ -36,6 +37,10 @@ tempdir().}
 
 \item{subdir_name}{The name of the subdirectory that the output files will be
 placed.}
+
+\item{call_peaks}{Set to TRUE if you want to call peaks (in which case you
+will have supplied BAM files). Set to TRUE if treat_files is a vector of
+paths to narrowPeak or broadPeak files.}
 
 \item{minentries}{The minimum number of intersections a given peak must
 satisfy.}

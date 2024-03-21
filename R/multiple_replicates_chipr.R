@@ -7,6 +7,9 @@
 #' @inheritParams idr_analysis
 #' @param subdir_name The name of the subdirectory that the output files will be
 #' placed.
+#' @param call_peaks Set to TRUE if you want to call peaks (in which case you
+#' will have supplied BAM files). Set to TRUE if treat_files is a vector of
+#' paths to narrowPeak or broadPeak files.
 #' @inheritParams run_chipr
 #' @inheritDotParams MACSr::callpeak -tfile -cfile -outdir -name -format -log
 #' -tempdir
@@ -31,6 +34,7 @@ multiple_replicates_chipr <- function(treat_files,
                                       is_paired = FALSE,
                                       out_dir,
                                       subdir_name = "chipr_analysis",
+                                      call_peaks = TRUE,
                                       minentries = 2,
                                       rankmethod = "pvalue",
                                       duphandling = "average",
@@ -40,14 +44,18 @@ multiple_replicates_chipr <- function(treat_files,
                                       size = 20,
                                       ...) {
   final_out_dir <- create_or_use_dir(out_dir, subdir_name)
-  peak_list <-
-    prepare_and_call(
-      treat_files = treat_files,
-      control_files = control_files,
-      is_paired = is_paired,
-      out_dir = final_out_dir,
-      ...
-    ) # outputs a named list of peak files
+  if(call_peaks){
+    peak_list <-
+      prepare_and_call(
+        treat_files = treat_files,
+        control_files = control_files,
+        is_paired = is_paired,
+        out_dir = final_out_dir,
+        ...
+      ) # outputs a named list of peak files
+  } else {
+    peak_list <- as.list(treat_files)
+  }
 
   peak_file_paths <- unlist(peak_list)
   result_chipr <- run_chipr(peak_files = peak_file_paths,
