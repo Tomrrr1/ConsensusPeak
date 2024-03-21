@@ -7,7 +7,7 @@
 multiple_replicates_mspc(
   treat_files,
   control_files = NULL,
-  is_paired,
+  is_paired = FALSE,
   out_dir,
   subdir_name = "mspc_analysis",
   replicateType,

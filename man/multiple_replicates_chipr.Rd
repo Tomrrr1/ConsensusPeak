@@ -7,7 +7,7 @@
 multiple_replicates_chipr(
   treat_files,
   control_files = NULL,
-  is_paired,
+  is_paired = FALSE,
   out_dir,
   subdir_name = "chipr_analysis",
   minentries = 2,
